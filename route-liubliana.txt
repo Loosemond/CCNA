@@ -30,7 +30,7 @@ exit
 interface serial 0/0/1
 description connect Vienna
 ip address 63.49.54.21 255.255.255.252
-bandwidth 100000
+bandwidth 50000
 no shut
 exit
 end
