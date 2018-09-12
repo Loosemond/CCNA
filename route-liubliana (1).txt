@@ -1,0 +1,56 @@
+en
+conf t
+hostname R_Liubliana 
+username cisco secret class
+username cisco privilege 15
+ip domain-name CCNA-lab.com
+line vty 0 4
+transport input ssh
+login local
+exit
+
+crypto key generate rsa modulus 1024
+line con 0
+login local
+exit
+
+banner motd !Acesso Restrito a Utilizadores Autorizados!
+banner login !Efetue um backup de segurança antes de efetuar alterações!
+end
+
+!---Interfaceses
+conf t
+interface gigabitEthernet 0/1 
+description connect to budapest
+ip address 209.165.200.98 255.255.255.252
+bandwidth 100000
+no shut
+exit
+
+interface serial 0/0/1
+description connect Vienna
+ip address 63.49.54.21 255.255.255.252
+bandwidth 100000
+no shut
+exit
+end
+
+
+!----RIPv2
+
+configure terminal
+router rip
+version 2
+no auto-summary
+!redistribute static
+network 209.165.200.96
+network 63.49.54.20
+exit
+
+
+
+!-------HOST TABLE
+
+ip host R_Vienna 193.136.60.106 63.49.54.22 
+ip host R_Budapest 193.136.60.105 209.165.200.97
+ip host R_Liubliana 209.165.200.98 63.49.54.21
