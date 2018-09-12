@@ -30,7 +30,7 @@ exit
 interface gigabitEthernet 0/1
 description connect liubliana
 ip address 209.165.200.97 255.255.255.252
-bandwidth 100000
+bandwidth 50000
 no shut
 exit
 
