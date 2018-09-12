@@ -45,6 +45,8 @@ network 193.136.60.104
 network 63.49.54.20
 exit
 
+!-----NTP
+ntp master 1
 
 
 !-------HOST TABLE
