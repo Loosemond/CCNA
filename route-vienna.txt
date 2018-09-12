@@ -34,6 +34,15 @@ no shut
 exit
 end
 
+interface gigabitEthernet 0/0
+no ip address
+duplex auto
+speed auto
+interface gigabitethernet0/0.10
+description Data VLAN
+encapsulation dot1q 10 native
+ip address 192.168.0.1 255.255.255.0
+
 !----RIPv2
 
 configure terminal
