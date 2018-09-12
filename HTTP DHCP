@@ -1,0 +1,89 @@
+! ----- INIT CONFIG
+enable
+configure terminal
+!
+hostname Servers
+!
+username cisco privilege 15 secret class
+
+ip domain-name ccna3.cisco.com
+
+crypto key generate rsa modulus 1024 exportable
+
+line console 0
+
+login local
+
+exit
+
+
+line vty 0 15
+
+transport input ssh
+
+login local
+
+exit
+
+ip ssh version 2
+
+! ----- Banner 
+banner login $ Efetue um backup de seguranca antes de efetuar alteracoes $
+banner motd $ Acesso  Restrito  a Utilizadores Autorizados $
+
+! ----- Services
+service password-encryption
+
+! ----- DHCP
+interface FastEthernet 0/1
+ip address 172.19.10.1 255.255.254.0
+no shutdown
+exit
+
+ip dhcp excluded-address 172.19.0.252
+
+ip dhcp excluded-address 172.19.0.253
+
+ip dhcp excluded-address 172.19.0.254
+ip dhcp excluded-address 172.19.4.252
+
+ip dhcp excluded-address 172.19.4.253
+
+ip dhcp excluded-address 172.19.4.254
+ip dhcp excluded-address 172.19.6.252
+ip dhcp excluded-address 172.19.6.253
+
+ip dhcp excluded-address 172.19.6.254
+
+ip dhcp pool Voice
+ network 172.19.0.0 255.255.252.0
+ default-router 172.19.0.254
+ dns-server 172.16.208.66 193.136.60.10
+ lease 8
+ exit
+ 
+ip dhcp pool Engineering
+ network 172.19.4.0 255.255.254.0
+ default-router 172.19.4.254
+ dns-server 172.16.208.66 193.136.60.10
+ lease 8
+ exit
+
+ip dhcp pool Administration
+ network 172.19.6.0 255.255.254.0
+ default-router 172.19.6.254
+ dns-server 172.16.208.66 193.136.60.10
+ lease 8
+ exit
+
+! ----- HTTP
+interface FastEthernet 0/0
+ip address 5.255.254.0
+no shutdown
+exit
+ip http server
+ip http authentication local
+
+! ----- Routes
+ip route 0.0.0.0 0.0.0.0 172.19.8.254
+ip route 0.0.0.0 0.0.0.0 172.19.10.254
