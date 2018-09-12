@@ -1,0 +1,105 @@
+en
+conf t
+hostname SW1_Vienna
+username cisco privilege 15 secret class
+banner login !Efetue um backup de segurança antes de efetuar alteracoes!
+ip domain name CCNA_lab.com
+crypto key generate rsa modulus 1024 exportable
+line con 0
+login local
+exit
+line vty 0 15
+privilege level 15
+login local
+transport input ssh
+exit
+
+service password-encryption
+
+!----- IP Host List
+ip host SW2_Vienna 127.19.0.2
+ip host SW1_Vienna 127.19.0.1
+ip host R_Vienna 193.136.60.106
+ip host R_Liubliana 193.136.60.106
+ip host R_Budapest 63.49.54.22
+
+!---- VLANS
+vlan 10
+name External_Servers
+vlan 11
+name Internal_Servers
+vlan 200
+name Voice
+vlan 100
+name Engineering
+vlan 101
+name Administration
+vlan 254
+name Native
+vlan 255
+name Management
+vlan 299
+name BlackHole
+exit
+
+interface range FastEthernet0/1-10
+description porta com acesso Vlan10
+switchport access vlan 10
+switchport mode access
+switchport nonegotite
+switchport port-security
+switchport port-security maximum 3
+switchport port-security violation shutdown
+switchport port-security mac-address sticky
+ip dhcp snooping limit rate 10
+no shutdown
+exit
+
+interface range FastEthernet0/11-20
+
+description Porta com acesso Vlan11
+switchport access vlan 11
+switchport mode access
+switchport nonegotiate
+switchport port-security
+switchport port-security maximum 3
+switchport port-security violation shutdown
+switchport port-security mac-address sticky
+ip dhcp snooping limit rate 10
+noshutdown
+exit
+
+interface range Fastethernet0/21-22
+channel-group 1 mode active
+exit
+
+interface port-channel 1
+description Link to MLS1_Vienna
+switchport mode trunk
+switch trunk native vlan 254
+switchport trunk allowed vlan 10,11,100,101,200,255
+ip dhcp snooping trust
+ip dhcp snooping limit rate 10
+no shutdown
+exit
+
+interface range Fastethernet0/23-24
+channel-group 2 mode active
+exit
+
+interface port-channel 2
+description Link to MLS2_Vienna
+switchport mode trunk
+switchport trunk native vlan 254
+switchport trunk allowed vlan10,11,100,101,200,255
+ip dhcp snooping trust
+ip dhcp snooping limit rate 10
+no shutdown
+exit
+
+interface Vlan255
+ip address 127.19.0.1 255.255.255.240
+
+! ----- Spanning Tree
+spanning-tree mode rapid-pvst 
+
