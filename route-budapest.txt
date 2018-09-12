@@ -15,7 +15,7 @@ login local
 exit
 
 banner motd !Acesso Restrito a Utilizadores Autorizados!
-banner login !Efetue um backup de segurança antes de efetuar alterações!
+banner login !Efetue um backup de seguranÃ§a antes de efetuar alteraÃ§Ãµes!
 
 
 !---Interfaceses 
