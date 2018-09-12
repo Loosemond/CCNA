@@ -21,8 +21,7 @@ ip host SW1_Vienna 127.19.0.1
 ip host R_Vienna 193.136.60.106
 ip host R_Liubliana 193.136.60.106
 ip host R_Budapest 63.49.54.22
-!
-!
+
 !---- VLANS
 vlan 10
 
@@ -55,7 +54,7 @@ vlan 299
 
 name BlackHole
 exit
-!
+
 interface range FastEthernet0/1-10
 description porta com acesso Vlan10
 switchport access vlan 10
@@ -80,7 +79,7 @@ switchport port-security maximum 1
 switchport port-security violation shutdown
 switchport port-security mac-address sticky
 ip dhcp snooping limit rate 10
-noshutdown
+no shutdown
 exit
 !
 interface range Fastethernet0/21-22
