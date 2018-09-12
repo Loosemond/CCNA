@@ -19,20 +19,20 @@ banner login !Efetue um backup de segurança antes de efetuar alterações!
 
 !---Interfaceses 
 
-interface ethernet 0/1 
+interface gigabitEthernet 0/1 
 description connect to budapest
 ip address 193.136.60.106 255.255.255.252
 bandwidth 100000
 no shut
 exit
 
-interface ethernet 0/0
+interface serial 0/0/1
 description connect liubliana
 ip address 63.49.54.22 255.255.255.252
 bandwidth 100000
 no shut
 exit
-
+end
 
 !----RIPv2
 
