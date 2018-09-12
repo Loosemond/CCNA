@@ -2,7 +2,7 @@ en
 conf t
 hostname SW1_Vienna
 username cisco privilege 15 secret class
-banner login !Efetue um backup de segurança antes de efetuar alteracoes!
+banner login !Efetue um backup de seguranÃ§a antes de efetuar alteracoes!
 ip domain name CCNA_lab.com
 crypto key generate rsa modulus 1024 exportable
 line con 0
@@ -25,21 +25,35 @@ ip host R_Budapest 63.49.54.22
 !
 !---- VLANS
 vlan 10
-name External_Servers
-vlan 11
+
+name External_Servers
+
+vlan 11
 name Internal_Servers
-vlan 200
-name Voice
+
+vlan 200
+
+name Voice
+
 vlan 100
-name Engineering
-vlan 101
-name Administration
-vlan 254
-name Native
-vlan 255
+
+name Engineering
+
+vlan 101
+
+name Administration
+
+vlan 254
+
+name Native
+
+vlan 255
+
 name Management
-vlan 299
-name BlackHole
+
+vlan 299
+
+name BlackHole
 exit
 !
 interface range FastEthernet0/1-10
