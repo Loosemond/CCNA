@@ -10,6 +10,11 @@ login local
 exit
 
 crypto key generate rsa modulus 1024
+ip ssh pubkey-chain
+username cisco
+key-string
+end
+conf t
 line con 0
 login local
 exit
