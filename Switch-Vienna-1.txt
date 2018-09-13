@@ -61,7 +61,7 @@ interface range FastEthernet0/1-10
 description porta com acesso Vlan10
 switchport access vlan 10
 switchport mode access
-switchport nonegotite
+switchport nonegotiate
 switchport port-security
 switchport port-security maximum 3
 switchport port-security violation shutdown
