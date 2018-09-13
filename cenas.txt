@@ -1,0 +1,6 @@
+ligação a internet(NAT)
+loopbacks
+Colocar IP no R_Vienna
+VLAN299
+slaves
+ACL
