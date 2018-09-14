@@ -19,7 +19,7 @@ banner login !Efetue um backup de segurança antes de efetuar alterações!
 
 !---Interfaceses 
 
-interface gigabitEthernet 0/1 
+interface serial 0/0/0
 description connect to budapest
 ip address 193.136.60.106 255.255.255.252
 bandwidth 100000
@@ -34,13 +34,12 @@ no shut
 exit
 
 
-interface gigabitEthernet 0/0
+interface serial 0/0/1
 no ip address
-
 duplex auto
 speed auto
 
-interface gigabitethernet 0/0.200
+interface serial 0/0/1.200
 description Voice
 encapsulation dot1q 200 native
 ip address  172.19.0.0 255.255.252.0
@@ -52,25 +51,25 @@ encapsulation dot1q 100 native
 ip address  172.19.4.0 255.255.254.0
 ip helper-address 172.19.10.1
 
-interface gigabitethernet 0/0.101
+interface serial 0/0/1.101
 description Administration
 encapsulation dot1q 101 native
 ip address  172.19.6.0 255.255.254.0
 ip helper-address 172.19.10.1
 
-interface gigabitethernet 0/0.101
+interface serial 0/0/1.101
 description Administration
 encapsulation dot1q 101 native
 ip address  172.19.6.0 255.255.254.0
 ip helper-address 172.19.10.1
 
-interface gigabitethernet 0/0.10
+interface serial 0/0/1.10
 description External_Servers
 encapsulation dot1q 10 native
 ip address  172.19.8.0 255.255.254.0
 ip helper-address 172.19.10.1
 
-interface gigabitethernet 0/0.11
+interface serial 0/0/1.11
 description Internal_Servers
 encapsulation dot1q 11 native
 ip address  172.19.10.0 255.255.254.0
