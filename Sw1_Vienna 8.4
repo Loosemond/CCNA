@@ -90,8 +90,8 @@ switchport access vlan 299
 shut
 exit
 
-interface port-channel 1
-description Link to SW1_Vienna
+interface GigabitEthernet0/1 
+description Link to Vienna
 switchport mode trunk
 switch trunk native vlan 254
 switchport trunk allowed vlan 100,101,200,255
@@ -101,7 +101,7 @@ no shutdown
 exit
 
 
-interface port-channel 2
+interface GigabitEthernet0/2
 description Link to SW2_Vienna
 switchport mode trunk
 switchport trunk native vlan 254
