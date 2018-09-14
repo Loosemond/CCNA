@@ -40,7 +40,7 @@ no shut
 exit
 
 ! ----- INTERFACE LOOPBACK
-
+conf t
 interface Loopback0
 description LoopBack Budapeste Software Development
 ip address 172.19.32.0 255.255.254.0
