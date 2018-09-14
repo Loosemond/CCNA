@@ -83,8 +83,10 @@ ip dhcp snooping limit rate 10
 no shutdown
 exit
 
-interface range Fastethernet0/21-22
-channel-group 1 mode active
+interface range Fastethernet0/21-24
+description Porta com acesso Vlan299
+switchport access vlan 299
+shut
 exit
 
 interface port-channel 1
@@ -97,9 +99,6 @@ ip dhcp snooping limit rate 10
 no shutdown
 exit
 
-interface range Fastethernet0/23-24
-channel-group 2 mode active
-exit
 
 interface port-channel 2
 description Link to MLS2_Vienna
