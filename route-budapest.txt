@@ -39,6 +39,14 @@ bandwidth 50000
 no shut
 exit
 
+! ----- INTERFACE LOOPBACK
+
+interface Loopback0
+ description LoopBack Budapeste Office to VoIP
+ ip address 172.19.128.1 255.255.252.0
+
+exit
+
 
 !----RIPv2
 
