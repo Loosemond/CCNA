@@ -44,38 +44,38 @@ speed auto
 interface gigabitEthernet 0/0.200
 description Voice
 encapsulation dot1q 200 native
-ip address  172.19.0.0 255.255.252.0
-ip helper-address 172.19.10.254
+ip address  172.19.0.254 255.255.252.0
+ip helper-address 172.19.10.1
 
 interface gigabitEthernet 0/0.100
 description Engineering
 encapsulation dot1q 100 native
-ip address  172.19.4.0 255.255.254.0
-ip helper-address 172.19.10.254
+ip address  172.19.4.254 255.255.254.0
+ip helper-address 172.19.10.1
 
 interface gigabitEthernet 0/0.101
 description Administration
 encapsulation dot1q 101 native
-ip address  172.19.6.0 255.255.254.0
-ip helper-address 172.19.10.254
+ip address  172.19.6.254 255.255.254.0
+ip helper-address 172.19.10.1
 
 interface gigabitEthernet 0/0.101
 description Administration
 encapsulation dot1q 101 native
-ip address  172.19.6.0 255.255.254.0
-ip helper-address 172.19.10.254
+ip address  172.19.6.254 255.255.254.0
+ip helper-address 172.19.10.1
 
 interface gigabitEthernet 0/0.10
 description External_Servers
 encapsulation dot1q 10 native
-ip address  172.19.8.0 255.255.254.0
-ip helper-address 172.19.10.254
+ip address  172.19.8.254 255.255.254.0
+ip helper-address 172.19.10.1
 
 interface gigabitEthernet 0/0.11
 description Internal_Servers
 encapsulation dot1q 11 native
-ip address  172.19.10.0 255.255.254.0
-ip helper-address 172.19.10.254
+ip address  172.19.10.254 255.255.254.0
+ip helper-address 172.19.10.1
 
 exit
 end
