@@ -8,7 +8,7 @@ crypto key generate rsa modulus 1024 exportable
 line con 0
 login local
 exit
-line vty 0 15
+line vty 0 4
 privilege level 15
 login local
 transport input ssh
@@ -57,7 +57,7 @@ name BlackHole
 exit
 
 interface range FastEthernet0/1-10
-description porta com acesso Vlan10
+description porta com acesso Vlan100
 switchport access vlan 10
 switchport mode access
 switchport nonegotiate
@@ -71,7 +71,7 @@ exit
 
 interface range FastEthernet0/11-20
 
-description Porta com acesso Vlan11
+description Porta com acesso Vlan101
 switchport access vlan 11
 switchport mode access
 switchport nonegotiate
@@ -103,7 +103,7 @@ exit
 
 
 interface Vlan255
-ip address 127.19.0.1 255.255.255.240
+ip address 172.19.12.2 255.255.255.0
 
 ! ----- Spanning Tree
 spanning-tree mode rapid-pvst 
