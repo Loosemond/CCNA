@@ -94,7 +94,7 @@ interface GigabitEthernet0/1
 description Link to Vienna
 switchport mode trunk
 switch trunk native vlan 254
-switchport trunk allowed vlan 100,101,200,255
+switchport trunk allowed vlan 10,11,100,101,200,255
 ip dhcp snooping trust
 ip dhcp snooping limit rate 10
 no shutdown
@@ -105,7 +105,7 @@ interface GigabitEthernet0/2
 description Link to SW2_Vienna
 switchport mode trunk
 switchport trunk native vlan 254
-switchport trunk allowed vlan 100,101,200,255
+switchport trunk allowed vlan 10,11,100,101,200,255
 ip dhcp snooping trust
 ip dhcp snooping limit rate 10
 no shutdown
