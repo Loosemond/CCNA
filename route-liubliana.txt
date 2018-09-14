@@ -36,7 +36,7 @@ exit
 end
 
 !-----Loopback
-
+conf t
 interface Loopback0
 description LoopBack Liubliana Traffic Controllers
 ip address 172.19.20.0 255.255.254.0
