@@ -60,7 +60,7 @@ interface range FastEthernet0/1-10
 description porta com acesso Vlan10
 switchport access vlan 10
 switchport mode access
-switchport nonegotite
+switchport nonegotiate
 switchport port-security
 switchport port-security maximum 3
 switchport port-security violation shutdown
@@ -89,7 +89,7 @@ switchport access vlan 299
 shut
 exit
 
-interface port-channel 1
+interface GigabitEthernet0/1
 description Link to SW1_Vienna
 switchport mode trunk
 switch trunk native vlan 254
@@ -100,15 +100,7 @@ no shutdown
 exit
 
 
-interface port-channel 2
-description Link to SW2_Vienna
-switchport mode trunk
-switchport trunk native vlan 254
-switchport trunk allowed vlan 100,101,200,255
-ip dhcp snooping trust
-ip dhcp snooping limit rate 10
-no shutdown
-exit
+
 
 interface Vlan255
 ip address 127.19.0.1 255.255.255.240
