@@ -8,18 +8,11 @@ line vty 0 4
 transport input ssh
 login local
 exit
-
 crypto key generate rsa modulus 1024
-ip ssh pubkey-chain
-username cisco
-key-string
-end
-conf t
 line con 0
 login local
 exit
-exit
-exit
+
 
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
