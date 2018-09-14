@@ -1,5 +1,3 @@
-ligação a internet(NAT)
-Colocar IP no R_Vienna
-VLAN299
 slaves
 ACL
+definir IP na Vlan 254 em cada Sw para fazer manag.
