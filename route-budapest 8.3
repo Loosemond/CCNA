@@ -25,14 +25,14 @@ banner login !Efetue um backup de segurança antes de efetuar alterações!
 
 !---Interfaceses 
 
-interface gigabitEthernet 0/0
+interface serial 0/0/1
 description connect to Vienna
 ip address 193.136.60.105 255.255.255.252
 bandwidth 100000
 no shut
 exit
 
-interface gigabitEthernet 0/1
+interface serial 0/0/0
 description connect liubliana
 ip address 209.165.200.97 255.255.255.252
 bandwidth 50000
