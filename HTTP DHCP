@@ -1,28 +1,18 @@
-! ----- INIT CONFIG
+
 enable
 configure terminal
-!
 hostname Servers
-!
 username cisco privilege 15 secret class
-
 ip domain-name ccna3.cisco.com
-
 crypto key generate rsa modulus 1024 exportable
 
 line console 0
-
 login local
-
 exit
 
-
 line vty 0 15
-
 transport input ssh
-
 login local
-
 exit
 
 ip ssh version 2
@@ -78,7 +68,7 @@ ip dhcp pool Administration
 
 ! ----- HTTP
 interface gigabitEthernet 0/0
-ip address 5.255.254.0
+ip address 172.19.8.1 255.255.254.0
 no shutdown
 exit
 ip http server
