@@ -45,33 +45,33 @@ exit
 conf t
 interface Loopback0
 description LoopBack Budapeste Software Development
-ip address 172.19.32.0 255.255.254.0
+ip address 172.19.32.1 255.255.254.0
 exit
 
 interface Loopback1
 description LoopBack Budapeste IT Staff
-ip address 172.19.34.0 255.255.254.0
+ip address 172.19.34.1 255.255.254.0
 exit
 
 interface Loopback2
 description LoopBack Budapeste Administrative Personal
-ip address 172.19.36.0 255.255.254.0
+ip address 172.19.36.1 255.255.254.0
 exit
 
 interface Loopback3
 description LoopBack Budapeste Building Management
-ip address 172.19.38.0 255.255.254.0
+ip address 172.19.38.1 255.255.254.0
 exit
 
 
 interface Loopback4
 description LoopBack Budapeste VoIP 
-ip address 172.19.40.0 255.255.254.0
+ip address 172.19.40.1 255.255.254.0
 exit
 
 interface Loopback5
 description LoopBack Budapeste Development Server
-ip address 172.19.42.0 255.255.254.0
+ip address 172.19.42.1 255.255.254.0
 exit
 
 
@@ -83,6 +83,11 @@ no auto-summary
 !redistribute static
 network 193.136.60.104
 network 209.165.200.96
+network 172.19.32.0
+network 172.19.34.0
+network 172.19.36.0
+network 172.19.40.0
+network 172.19.42.0
 exit
 
 
