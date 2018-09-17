@@ -121,8 +121,8 @@ ip host R_Budapest 193.136.60.105 209.165.200.97
 ip host R_Liubliana 209.165.200.98 63.49.54.21
 
 ! ----- NAT
-access-list 10 permit 193.136.60.104 0.0.0.3 
-access-list 10 permit 63.49.74.20 0.0.0.3 
-access-list 10 permit 209.165.200.96 0.0.0.3 
+access-list 10 denied 172.19.40.0 0.0.1.255
+access-list 10 denied 172.19.16.0 0.0.3.255
+access-list 10 permit any
 ip nat inside source list 10 interface giga 0/1 overload
 ip nat inside source static tcp 172.19.8.1 80 interface giga 0/1 80
