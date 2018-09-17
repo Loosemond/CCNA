@@ -78,6 +78,15 @@ ip address  172.19.10.254 255.255.254.0
 ip helper-address 172.19.10.1
 
 exit
+
+interface gigabitethernet0/1
+escription Connects to Internet
+ip address dhcp
+ip nat outside
+duplex auto
+speed auto
+no shutdown
+exit
 end
 
 !----RIPv2
