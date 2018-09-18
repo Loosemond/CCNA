@@ -92,6 +92,16 @@ exit
 ip host R_Vienna 193.136.60.106 63.49.54.22 
 ip host R_Budapest 193.136.60.105 209.165.200.97
 ip host R_Liubliana 209.165.200.98 63.49.54.21
+!---ACLs
+ip access-list standard ipcams
+permit 172.19.22.0 0.0.1.255
+permit 172.19.6.0 0.0.1.255
+deny any
+exit
+interface loopback1
+ip access-group  ipcams in 
+
+
 
 !---Clock
 
