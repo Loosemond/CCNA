@@ -23,6 +23,7 @@ interface serial 0/0/0
 description connect to budapest
 ip address 193.136.60.106 255.255.255.252
 bandwidth 100000
+ip nat inside
 no shut
 exit
 
@@ -30,6 +31,7 @@ interface serial 0/0/1
 description connect liubliana
 ip address 63.49.54.22 255.255.255.252
 bandwidth 100000
+ip nat inside
 no shut
 exit
 
@@ -47,36 +49,42 @@ description Voice
 encapsulation dot1q 200 
 ip address  172.19.0.254 255.255.252.0
 ip helper-address 172.19.10.1
+ip nat inside
 
 interface gigabitEthernet 0/0.100
 description Engineering
 encapsulation dot1q 100 
 ip address  172.19.4.254 255.255.254.0
 ip helper-address 172.19.10.1
+ip nat inside
 
 interface gigabitEthernet 0/0.101
 description Administration
 encapsulation dot1q 101
 ip address  172.19.6.254 255.255.254.0
 ip helper-address 172.19.10.1
+ip nat inside
 
 interface gigabitEthernet 0/0.255
 description 
 encapsulation dot1q 255 Native
 ip address  172.19.12.254 255.255.255.0
 ip helper-address 172.19.10.1
+ip nat inside
 
 interface gigabitEthernet 0/0.10
 description External_Servers
 encapsulation dot1q 10 
 ip address  172.19.8.254 255.255.254.0
 ip helper-address 172.19.10.1
+ip nat inside
 
 interface gigabitEthernet 0/0.11
 description Internal_Servers
 encapsulation dot1q 11 
 ip address  172.19.10.254 255.255.254.0
 ip helper-address 172.19.10.1
+ip nat inside
 
 exit
 
@@ -121,8 +129,8 @@ ip host R_Budapest 193.136.60.105 209.165.200.97
 ip host R_Liubliana 209.165.200.98 63.49.54.21
 
 ! ----- NAT
-access-list 10 denied 172.19.40.0 0.0.1.255
-access-list 10 denied 172.19.16.0 0.0.3.255
+access-list 10 deny 172.19.40.0 0.0.1.255
+access-list 10 deny 172.19.16.0 0.0.3.255
 access-list 10 permit any
 ip nat inside source list 10 interface giga 0/1 overload
 ip nat inside source static tcp 172.19.8.1 80 interface giga 0/1 80
