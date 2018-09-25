@@ -1,0 +1,18 @@
+en
+conf t
+hostname R_Bratislava
+username cisco secret class
+username cisco privilege 15
+ip domain-name CCNA-lab.com
+line vty 0 4
+transport input ssh
+login local
+exit
+crypto key generate rsa modulus 1024
+line con 0
+login local
+exit
+
+
+banner motd !Acesso Restrito a Utilizadores Autorizados!
+banner login !Efetue um backup de segurança antes de efetuar alterações!
