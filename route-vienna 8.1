@@ -17,7 +17,7 @@ banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
 
 
-!---Interfaceses 
+!---Interfaceses
 
 interface serial 0/0/0
 description connect to budapest
@@ -35,7 +35,7 @@ ip nat inside
 no shut
 exit
 
- 
+
 
 
 interface gigabitEthernet 0/0
@@ -46,14 +46,14 @@ ip nat inside
 
 interface gigabitEthernet 0/0.200
 description Voice
-encapsulation dot1q 200 
+encapsulation dot1q 200
 ip address  172.19.0.254 255.255.252.0
 ip helper-address 172.19.10.1
 ip nat inside
 
 interface gigabitEthernet 0/0.100
 description Engineering
-encapsulation dot1q 100 
+encapsulation dot1q 100
 ip address  172.19.4.254 255.255.254.0
 ip helper-address 172.19.10.1
 ip nat inside
@@ -66,22 +66,22 @@ ip helper-address 172.19.10.1
 ip nat inside
 
 interface gigabitEthernet 0/0.255
-description 
-encapsulation dot1q 255 
+description
+encapsulation dot1q 255
 ip address  172.19.12.254 255.255.255.0
 ip helper-address 172.19.10.1
 ip nat inside
 
 interface gigabitEthernet 0/0.10
 description External_Servers
-encapsulation dot1q 10 
+encapsulation dot1q 10
 ip address  172.19.8.254 255.255.254.0
 ip helper-address 172.19.10.1
 ip nat inside
 
 interface gigabitEthernet 0/0.11
 description Internal_Servers
-encapsulation dot1q 11 
+encapsulation dot1q 11
 ip address  172.19.10.254 255.255.254.0
 ip helper-address 172.19.10.1
 ip nat inside
@@ -98,24 +98,7 @@ no shutdown
 exit
 end
 
-!----RIPv2
 
-configure terminal
-router rip
-version 2
-no auto-summary
-!redistribute static
-network 193.136.60.104
-network 63.49.54.20
-network 172.19.0.0 
-network 172.19.4.0 
-network 172.19.6.0
-network 172.19.12.0
-network 172.19.8.0
-network 172.19.10.0
-
-default-information originate
-exit
 
 !-----NTP
 ntp master 1
@@ -123,7 +106,7 @@ ntp master 1
 
 !-------HOST TABLE
 
-ip host R_Vienna 193.136.60.106 63.49.54.22 
+ip host R_Vienna 193.136.60.106 63.49.54.22
 ip host R_Budapest 193.136.60.105 209.165.200.97
 ip host R_Liubliana 209.165.200.98 63.49.54.21
 

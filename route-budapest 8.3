@@ -18,7 +18,7 @@ banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
 
 
-!---Interfaceses 
+!---Interfaces
 
 interface serial 0/1/1
 description connect to Vienna
@@ -58,7 +58,7 @@ exit
 
 
 interface Loopback4
-description LoopBack Budapeste VoIP 
+description LoopBack Budapeste VoIP
 ip address 172.19.40.1 255.255.254.0
 exit
 
@@ -68,30 +68,14 @@ ip address 172.19.42.1 255.255.254.0
 exit
 
 
-!----RIPv2
-
-router rip
-version 2
-no auto-summary
-!redistribute static
-network 193.136.60.104
-network 209.165.200.96
-network 172.19.32.0
-network 172.19.34.0
-network 172.19.36.0
-network 172.19.40.0
-network 172.19.42.0
-exit
-
 
 
 !-------HOST TABLE
 
-ip host R_Vienna 193.136.60.106 63.49.54.22 
+ip host R_Vienna 193.136.60.106 63.49.54.22
 ip host R_Budapest 193.136.60.105 209.165.200.97
 ip host R_Liubliana 209.165.200.98 63.49.54.21
 
 !---Clock
 
 ntp server 193.136.60.106 prefer
-

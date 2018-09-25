@@ -1,6 +1,6 @@
 en
 conf t
-hostname R_Liubliana 
+hostname R_Liubliana
 username cisco secret class
 username cisco privilege 15
 ip domain-name CCNA-lab.com
@@ -53,7 +53,7 @@ ip address 172.19.22.1 255.255.254.0
 exit
 
 interface Loopback3
-description Loopback Liubliana VoIP 
+description Loopback Liubliana VoIP
 ip address 172.19.16.1 255.255.252.0
 exit
 
@@ -67,29 +67,11 @@ description Loopback Liubliana Building Management
 ip address 172.19.28.1 255.255.254.0
 exit
 
-!----RIPv2
-
-router rip
-version 2
-no auto-summary
-
-!redistribute static
-network 209.165.200.96
-network 63.49.54.20
-network 63.49.54.20
-network 172.19.20.0
-network 172.19.26.0
-network 172.19.22.0
-network 172.19.16.0
-network 172.19.24.0
-network 172.19.28.0
-exit
-
 
 
 !-------HOST TABLE
 
-ip host R_Vienna 193.136.60.106 63.49.54.22 
+ip host R_Vienna 193.136.60.106 63.49.54.22
 ip host R_Budapest 193.136.60.105 209.165.200.97
 ip host R_Liubliana 209.165.200.98 63.49.54.21
 !---ACLs
@@ -99,7 +81,7 @@ permit 172.19.6.0 0.0.1.255
 deny any
 exit
 interface loopback1
-ip access-group  ipcams in 
+ip access-group  ipcams in
 
 
 
