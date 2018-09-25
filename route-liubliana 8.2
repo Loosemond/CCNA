@@ -13,11 +13,12 @@ crypto key generate rsa modulus 1024
 line con 0
 login local
 exit
+service password-encryption
 
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
-end
 
+end
 !---Interfaceses
 conf t
 interface serial 0/0/0
