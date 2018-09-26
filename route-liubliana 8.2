@@ -36,6 +36,14 @@ no shut
 exit
 end
 
+interface serial 0/1/0
+description connect Vienna
+ip address 56.16.20.213 255.255.255.252
+bandwidth 100000
+no shut
+exit
+end
+
 !-----Loopback
 conf t
 interface Loopback0

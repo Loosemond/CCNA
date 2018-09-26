@@ -16,3 +16,12 @@ service password-encryption
 
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
+
+!---Interfaceses
+conf t
+interface serial 0/0/0
+description connect to budapest
+ip address 56.16.20.214 255.255.255.252
+bandwidth 100000
+no shut
+exit
