@@ -25,3 +25,16 @@ ip address 56.16.20.214 255.255.255.252
 bandwidth 100000
 no shut
 exit
+
+interface gigabitethernet0/1
+description Connecta a internet
+ip address dhcp
+ip nat outside
+duplex auto
+speed auto
+no shutdown
+exit
+end
+
+!-----NAT
+ip nat inside source list 10 interface giga 0/1 overload
