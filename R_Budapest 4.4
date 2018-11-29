@@ -24,6 +24,7 @@ banner login !Efetue um backup de segurança antes de efetuar alterações!
 interface serial 0/0/1
 description connect to Vienna
 ip address 193.136.60.105 255.255.255.252
+ipv6 address fe80::2 link-local
 bandwidth 100000
 no shut
 exit
@@ -31,6 +32,7 @@ exit
 interface serial 0/0/0
 description connect liubliana
 ip address 209.165.200.97 255.255.255.252
+ipv6 address fe80::2 link-local
 bandwidth 50000
 no shut
 exit
@@ -40,32 +42,38 @@ conf t
 interface Loopback0
 description LoopBack Budapeste Software Development
 ip address 172.19.32.1 255.255.254.0
+ipv6 address 1000:0:0:10::0/64
 exit
 
 interface Loopback1
 description LoopBack Budapeste IT Staff
 ip address 172.19.34.1 255.255.254.0
+ipv6 address 1000:0:0:11::0/64
 exit
 
 interface Loopback2
 description LoopBack Budapeste Administrative Personal
 ip address 172.19.36.1 255.255.254.0
+ipv6 address 1000:0:0:12::0/64
 exit
 
 interface Loopback3
 description LoopBack Budapeste Building Management
 ip address 172.19.38.1 255.255.254.0
+ipv6 address 1000:0:0:13::0/64
 exit
 
 
 interface Loopback4
 description LoopBack Budapeste VoIP
 ip address 172.19.40.1 255.255.254.0
+ipv6 address 1000:0:0:14::0/64
 exit
 
 interface Loopback5
 description LoopBack Budapeste Development Server
 ip address 172.19.42.1 255.255.254.0
+ipv6 address 1000:0:0:15::0/64
 exit
 
 
