@@ -24,6 +24,7 @@ conf t
 interface serial 0/0/0
 description connect to budapest
 ip address 209.165.200.98 255.255.255.252
+ipv6 address fe80::3 link-local
 bandwidth 100000
 no shut
 exit
@@ -31,6 +32,7 @@ exit
 interface serial 0/0/1
 description connect Vienna
 ip address 63.49.54.21 255.255.255.252
+ipv6 address fe80::3 link-local
 bandwidth 50000
 no shut
 exit
@@ -39,6 +41,7 @@ exit
 interface serial 0/1/0
 description connect Bratislava
 ip address 56.16.20.213 255.255.255.252
+ipv6 address fe80::2 link-local
 bandwidth 100000
 no shut
 exit
@@ -49,31 +52,37 @@ conf t
 interface Loopback0
 description LoopBack Liubliana Traffic Controllers
 ip address 172.19.20.1 255.255.254.0
+ipv6 address 1000:0:0:20::0/64
 exit
 
 interface Loopback1
 description Loopback Liubliana IP CAMs
 ip address 172.19.26.1 255.255.254.0
+ipv6 address 1000:0:0:21::0/64
 exit
 
 interface Loopback2
 description Loopback Liubliana Administrative Personal
 ip address 172.19.22.1 255.255.254.0
+ipv6 address 1000:0:0:22::0/64
 exit
 
 interface Loopback3
 description Loopback Liubliana VoIP
 ip address 172.19.16.1 255.255.252.0
+ipv6 address 1000:0:0:23::0/64
 exit
 
 interface Loopback4
 description Loopback Liubliana Engineering
 ip address 172.19.24.1 255.255.254.0
+ipv6 address 1000:0:0:24::0/64
 exit
 
 interface Loopback5
 description Loopback Liubliana Building Management
 ip address 172.19.28.1 255.255.254.0
+ipv6 address 1000:0:0:25::0/64
 exit
 
 
