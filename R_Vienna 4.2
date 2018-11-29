@@ -96,10 +96,10 @@ duplex auto
 speed auto
 no shutdown
 exit
-end
 
 
 
+conf t
 !-----NTP
 ntp master 1
 
@@ -116,3 +116,4 @@ access-list 10 deny 172.19.16.0 0.0.3.255
 access-list 10 permit any
 ip nat inside source list 10 interface giga 0/1 overload
 ip nat inside source static tcp 172.19.8.1 80 interface giga 0/1 80
+end
