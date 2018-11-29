@@ -20,8 +20,10 @@ banner login !Efetue um backup de segurança antes de efetuar alterações!
 !---Interfaceses
 conf t
 interface serial 0/0/0
-description connect to budapest
+description connect to Liubliana
 ip address 56.16.20.214 255.255.255.252
+ipv6 address fe80::4 link-local
+ip nat inside
 bandwidth 100000
 no shut
 exit
@@ -29,12 +31,40 @@ exit
 interface gigabitethernet0/1
 description Connecta a internet
 ip address dhcp
+ipv6 address 2001::2/64
 ip nat outside
 duplex auto
 speed auto
 no shutdown
 exit
+
+!---Desligar interface
+interface GiagabitEthernet 0/0
+description Interface Desligadas
+no ip address
+shutdown
+exit
+
+!---Interface LoopBack
+interface Loopback0
+description LoopBack Bratislava branch to Administration 
+ip address 172.19.192.1 255.255.255.0
+ipv6 address 1000:0:0:20::0/64
+exit
+
+interface Loopback1
+description LoopBack Bratislava Branch to VoIP
+ip address 172.19.193.1 255.255.255.0
+ipv6 address 1000:0:0:21::0/64
+exit
+
+interface Loopback2
+description LoopBack Bratislava Branch to Administritive Personal
+ip address 172.19.194.1 255.255.255.0
+ipv6 address 1000:0:0:22::0/64
+exit
 end
+
 
 !-----NAT
 ip nat inside source list 10 interface giga 0/1 overload
