@@ -1,0 +1,36 @@
+en
+conf t
+hostname MLS1_Vienna
+username cisco privilege 15 secret class
+banner login !Efetue um backup de segurança antes de efetuar alteracoes!
+ip domain name CCNA_lab.com
+crypto key generate rsa general-keys modulus 1024 expo
+line con 0
+login local
+exit
+line vty 0 4
+privilege level 15
+login local
+transport input ssh
+exit
+
+! ----- Services
+ip dhcp snooping
+
+service password-encryption
+
+
+interface vlan 10
+ip add 172.19.8.253 255.255.254.0
+standby 10 ip 172.19.9.254 !- o ip a ser usado
+Standby 10 priority 105 !- como e mais alto que o default quer dizer que e o activo
+Standby 10 preempt  !-?
+Exit
+Exit
+
+!----- IP Host List
+ip host SW2_Vienna 127.19.0.2
+ip host SW1_Vienna 127.19.0.1
+ip host R_Vienna 193.136.60.106
+ip host R_Liubliana 193.136.60.106
+ip host R_Budapest 63.49.54.22
