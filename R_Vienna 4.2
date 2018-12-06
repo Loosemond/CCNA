@@ -37,57 +37,13 @@ ip nat inside
 no shut
 exit
 
-
-
-
-interface gigabitEthernet 0/0
-no ip address
-no shut
+interface gi0/0
+description Connection to MLS1-Vienna
+ip address 172.19.13.1 255.255.255.0
 ip nat inside
-
-
-interface gigabitEthernet 0/0.200
-description Voice
-encapsulation dot1q 200
-ip address  172.19.0.254 255.255.252.0
-ip helper-address 172.19.10.1
-ip nat inside
-
-interface gigabitEthernet 0/0.100
-description Engineering
-encapsulation dot1q 100
-ip address  172.19.4.254 255.255.254.0
-ip helper-address 172.19.10.1
-ip nat inside
-
-interface gigabitEthernet 0/0.101
-description Administration
-encapsulation dot1q 101
-ip address  172.19.6.254 255.255.254.0
-ip helper-address 172.19.10.1
-ip nat inside
-
-interface gigabitEthernet 0/0.255
-description
-encapsulation dot1q 255
-ip address  172.19.12.254 255.255.255.0
-ip helper-address 172.19.10.1
-ip nat inside
-
-interface gigabitEthernet 0/0.10
-description External_Servers
-encapsulation dot1q 10
-ip address  172.19.8.254 255.255.254.0
-ip helper-address 172.19.10.1
-ip nat inside
-
-interface gigabitEthernet 0/0.11
-description Internal_Servers
-encapsulation dot1q 11
-ip address  172.19.10.254 255.255.254.0
-ip helper-address 172.19.10.1
-ip nat inside
-
+duplex auto
+speed auto
+no shutdown
 exit
 
 interface gigabitethernet0/1

@@ -99,6 +99,17 @@ standby 200 ip 172.19.3.254                !- este é /22 logo o ultimo ip e .3.
 ip helper-address 172.19.10.1
 exit
 
+interface FastEthernet0/1
+Description Link to Vienna
+No switchport
+Ip address 172.19.13.2 255.255.255.0
+duplex auto
+speed auto
+no shutdown
+exit
+
+
+
 !----- IP Host List
 ip host SW2_Vienna 127.19.0.2
 ip host SW1_Vienna 127.19.0.1
