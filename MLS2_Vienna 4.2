@@ -1,6 +1,6 @@
 en
 conf t
-hostname MLS1_Vienna
+hostname MLS2_Vienna
 username cisco privilege 15 secret class
 banner login !Efetue um backup de segurança antes de efetuar alteracoes!
 ip domain name MLS2_Vienna.CCNA_lab.com
@@ -54,27 +54,28 @@ name BlackHole
 
 
 
+
 interface vlan 10
 description External_Servers
 ip add 172.19.8.253 255.255.254.0
 standby 10 ip 172.19.9.254                  !- o ip a ser usado que é o ultimo ip da rede (/23)
-Standby 10 priority 105                     !- como e mais alto que o default quer dizer que e o activo
-Standby 10 preempt                          !- caso for abaixo quando voltar a estar up passa a ser o default (SEMPRE que estaja up vai ser o default)
+Standby 10 priority 100
+Standby 10 preempt
 Exit
 
 Interface vlan 11
 description Internal_Servers
 ip add 172.19.10.253 255.255.254.0
 standby 101 ip 172.19.11.254
-Standby 11 priority 105
-Standby 11 preempt
+Standby 101 priority 100
+Standby 101 preempt
 Exit
 
 Interface vlan 255
 description BlackHole
 ip add 172.19.12.253 255.255.255.0
 standby 255 ip 172.19.12.254
-Standby 255 priority 105
+Standby 255 priority 100
 Standby 255 preempt
 Exit
 
@@ -82,6 +83,7 @@ int vlan 100
 description Engineering
 ip add 172.19.4.253 255.255.254.0
 standby 100 ip 172.19.5.254
+Standby 100 priority 105
 ip helper-address 172.19.10.1
 exit
 
@@ -89,19 +91,16 @@ int vlan 101
 description Administration
 ip add 172.19.6.253 255.255.254.0
 standby 101 ip 172.19.7.254
+Standby 101 priority 105
+Standby 101 preempt
 ip helper-address 172.19.10.1
 exit
 
 int vlan 200
 description Voice
 ip add 172.19.0.253 255.255.252.0
-standby 200 ip 172.19.3.254                !- este é /22 logo o ultimo ip e .3.254
+standby 200 ip 172.19.3.254               !- este é /22 logo o ultimo ip e .3.254
+Standby 200 priority 105
+Standby 200 preempt
 ip helper-address 172.19.10.1
 exit
-
-!----- IP Host List
-ip host SW2_Vienna 127.19.0.2
-ip host SW1_Vienna 127.19.0.1
-ip host R_Vienna 193.136.60.106
-ip host R_Liubliana 193.136.60.106
-ip host R_Budapest 63.49.54.22
