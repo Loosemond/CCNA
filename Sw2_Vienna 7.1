@@ -14,7 +14,12 @@ login local
 transport input ssh
 exit
 
+
+!--Services
+ip dhcp snooping
+ip default-gateway 172.19.12.253                                                 !- ip do mls2 vlan Administration
 service password-encryption
+
 
 !----- IP Host List
 ip host SW2_Vienna 127.19.0.2
@@ -106,5 +111,4 @@ interface Vlan255
 ip address 172.19.12.2 255.255.255.0
 
 ! ----- Spanning Tree
-spanning-tree mode rapid-pvst 
-
+spanning-tree mode rapid-pvst

@@ -14,7 +14,13 @@ login local
 transport input ssh
 exit
 
+
+! ----- Services
+ip dhcp snooping
+ip default-gateway 172.19.12.253                                                !- ip do mls2 vlan Administration
 service password-encryption
+
+
 
 !----- IP Host List
 ip host SW2_Vienna 127.19.0.2
@@ -56,7 +62,7 @@ vlan 299
 
 name BlackHole
 exit
-!--- liga ao server HTTP -> 0/0 
+!--- liga ao server HTTP -> 0/0
 interface range FastEthernet0/1-10
 description porta com acesso Vlan10
 switchport access vlan 10
@@ -90,9 +96,10 @@ switchport access vlan 299
 shut
 exit
 
-interface GigabitEthernet0/1 
+interface GigabitEthernet0/1
 description Link to Vienna
 switchport mode trunk
+switchport nonegotiate                                                          !-Desativa o DTP
 switch trunk native vlan 254
 switchport trunk allowed vlan 10,11,100,101,200,255
 ip dhcp snooping trust
@@ -104,6 +111,7 @@ exit
 interface GigabitEthernet0/2
 description Link to SW2_Vienna
 switchport mode trunk
+switchport nonegotiate
 switchport trunk native vlan 254
 switchport trunk allowed vlan 10,11,100,101,200,255
 ip dhcp snooping trust
@@ -114,5 +122,4 @@ interface Vlan255
 ip address 172.19.12.1 255.255.255.0
 
 ! ----- Spanning Tree
-spanning-tree mode rapid-pvst 
-
+spanning-tree mode rapid-pvst
