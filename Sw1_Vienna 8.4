@@ -78,6 +78,7 @@ switchport port-security maximum 1
 switchport port-security violation shutdown
 switchport port-security mac-address sticky
 ip dhcp snooping limit rate 10
+no ip dhcp snooping trust
 no shutdown
 exit
 
@@ -92,12 +93,14 @@ switchport port-security maximum 1
 switchport port-security violation shutdown
 switchport port-security mac-address sticky
 ip dhcp snooping limit rate 10
+ip dhcp snooping trust
 no shutdown
 exit
 
 interface range Fastethernet0/21-24
 description Porta com acesso Vlan299
 switchport access vlan 299
+no ip dhcp snooping trust
 shut
 exit
 
@@ -107,7 +110,7 @@ switchport mode trunk
 switchport nonegotiate                                                          !-Desativa o DTP
 switch trunk native vlan 254
 switchport trunk allowed vlan 10,11,100,101,200,255
-ip dhcp snooping trust
+no ip dhcp snooping trust
 ip dhcp snooping limit rate 10
 no shutdown
 exit
