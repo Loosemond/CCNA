@@ -62,6 +62,23 @@ conf t
 !-----NTP
 ntp master 1
 
+!----OSPF
+router ospf 1
+router-id 1.1.1.1
+passive-interface default
+no passive-interface Serial0/0/1
+no passive-interface Serial0/0/0
+no passive-interface g0/0
+network 63.49.54.20 0.0.0.3 area 0
+network 172.19.0.0 0.0.15.255 area 1
+network 193.136.60.104 0.0.0.3 area 0
+area 1 range 172.19.0.0 255.255.240.0
+area 0 authentication message-digest
+default-information originate
+exit
+
+
+
 
 !-------HOST TABLE
 
