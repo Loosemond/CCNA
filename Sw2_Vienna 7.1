@@ -28,38 +28,13 @@ ip host R_Vienna 193.136.60.106
 ip host R_Liubliana 193.136.60.106
 ip host R_Budapest 63.49.54.22
 
-!---- VLANS
-vlan 10
+!---- VTP
+vtp mode client                                                                 !- activa o vtp v1 em modo servidor
+vtp domain CCNA
+vtp password class
 
-name External_Servers
 
-vlan 11
-name Internal_Servers
-
-vlan 200
-
-name Voice
-
-vlan 100
-
-name Engineering
-
-vlan 101
-
-name Administration
-
-vlan 254
-
-name Native
-
-vlan 255
-
-name Management
-
-vlan 299
-
-name BlackHole
-exit
+!--vlans                                                                        !- foram apagadas pois estamos a usar vtp
 
 interface range FastEthernet0/1-10
 description porta com acesso Vlan100

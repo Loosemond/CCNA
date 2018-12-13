@@ -29,6 +29,11 @@ ip host R_Vienna 193.136.60.106
 ip host R_Liubliana 193.136.60.106
 ip host R_Budapest 63.49.54.22
 
+!---- VTP
+vtp mode server                                                                 !- activa o vtp v1 em modo servidor
+vtp domain CCNA
+vtp password class
+
 
 !---- VLANS
 vlan 10
