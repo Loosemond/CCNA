@@ -97,35 +97,36 @@ ip dhcp snooping trust
 no shutdown
 exit
 
-interface range Fastethernet0/21-24
-description Porta com acesso Vlan299
-switchport access vlan 299
-no ip dhcp snooping trust
-shut
-exit
+!interface range Fastethernet0/21-24
+!description Porta com acesso Vlan299
+!switchport access vlan 299
+!no ip dhcp snooping trust
+!shut
+!exit
 
-interface GigabitEthernet0/1
-description Link to Vienna
+
+interface range FastEthernet 0/23-24
+channel-group 1 mode active
+description Link to MLS1_Vienna
+Exit
+interface Port-channel 1
+switchport trunk
+switchport trunk native Vlan 254
+switchport trunk allowed vlan 10,11,255,100,101,200
+
+interface range FastEthernet 0/21-22
+channel-group 2 mode active
+description Link to MLS2_Vienna
+Exit
+interface Port-channel 2
+switchport trunk native Vlan 254
 switchport mode trunk
-switchport nonegotiate                                                          !-Desativa o DTP
-switch trunk native vlan 254
-switchport trunk allowed vlan 10,11,100,101,200,255
-no ip dhcp snooping trust
-ip dhcp snooping limit rate 10
-no shutdown
-exit
+switchport trunk allowed vlan 10,11,255,100,101,200
 
 
-interface GigabitEthernet0/2
-description Link to SW2_Vienna
-switchport mode trunk
-switchport nonegotiate
-switchport trunk native vlan 254
-switchport trunk allowed vlan 10,11,100,101,200,255
-ip dhcp snooping trust
-ip dhcp snooping limit rate 10
-no shutdown
-exit
+
+
+
 interface Vlan255
 ip address 172.19.12.1 255.255.255.0
 
