@@ -17,6 +17,14 @@ service password-encryption
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
 
+!----OSPF
+router ospf 1
+router-id 1.1.1.1
+area 1 range 172.19.0.0 255.255.240.0
+area 0 authentication message-digest
+default-information originate
+exit
+
 !---Interfaceses
 interface serial 0/0/0
 description connect to Liubliana
