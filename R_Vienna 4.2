@@ -16,12 +16,20 @@ exit
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
 
+!----OSPF
+router ospf 1
+router-id 1.1.1.1
+area 1 range 172.19.0.0 255.255.240.0
+area 0 authentication message-digest
+default-information originate
+exit
 
 !---Interfaceses
 
 interface serial 0/0/0
 description connect to budapest
 ip address 193.136.60.106 255.255.255.252
+ip ospf 1 area 0
 ipv6 address fe80::1 link-local
 bandwidth 100000
 ip nat inside
@@ -31,6 +39,7 @@ exit
 interface serial 0/0/1
 description connect liubliana
 ip address 63.49.54.22 255.255.255.252
+ip ospf 1 area 0
 ipv6 address fe80::1 link-local
 bandwidth 100000
 ip nat inside
@@ -40,6 +49,7 @@ exit
 interface gi0/0
 description Connection to MLS1-Vienna
 ip address 172.19.13.1 255.255.255.0
+ip ospf 1 area 1
 ip nat inside
 duplex auto
 speed auto
@@ -56,28 +66,8 @@ speed auto
 no shutdown
 exit
 
-
-
 !-----NTP
 ntp master 1
-
-!----OSPF
-router ospf 1
-router-id 1.1.1.1
-passive-interface default
-no passive-interface Serial0/0/1
-no passive-interface Serial0/0/0
-no passive-interface g0/0
-network 63.49.54.20 0.0.0.3 area 0
-network 172.19.0.0 0.0.15.255 area 1
-network 193.136.60.104 0.0.0.3 area 0
-area 1 range 172.19.0.0 255.255.240.0
-area 0 authentication message-digest
-default-information originate
-exit
-
-
-
 
 !-------HOST TABLE
 
