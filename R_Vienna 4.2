@@ -21,7 +21,7 @@ router ospf 1
 router-id 1.1.1.1
 area 1 range 172.19.0.0 255.255.240.0
 area 0 authentication message-digest
-default-information originate
+default-information originate metric 30 metric-type 1
 exit
 
 !---Interfaceses
@@ -91,5 +91,8 @@ access-list 10 permit any
 ip nat inside source list 10 interface giga 0/1 overload
 ip nat inside source static tcp 172.19.8.1 80 interface giga 0/1 80
 end
+
+!--Rooting
+ip route 0.0.0.0 0.0.0.0 e0/1
 
 copy running-config startup-config
