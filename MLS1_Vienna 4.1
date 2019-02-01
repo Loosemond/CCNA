@@ -111,7 +111,7 @@ int vlan 100
 description Engineering
 ip add 172.19.4.253 255.255.254.0
 standby 100 ip 172.19.5.254
-Standby 100 priority 110
+Standby 100 priority 100
 Standby 100 preempt
 ip helper-address 172.19.10.1
 exit
@@ -120,7 +120,7 @@ int vlan 101
 description Administration
 ip add 172.19.6.253 255.255.254.0
 standby 101 ip 172.19.7.254
-Standby 101 priority 110
+Standby 101 priority 100
 Standby 101 preempt
 ip helper-address 172.19.10.1
 exit
@@ -129,7 +129,7 @@ int vlan 200
 description Voice
 ip add 172.19.0.253 255.255.252.0
 standby 200 ip 172.19.3.254                !- este é /22 logo o ultimo ip e .3.254
-Standby 200 priority 110
+Standby 200 priority 100
 Standby 200 preempt
 ip helper-address 172.19.10.1
 exit
