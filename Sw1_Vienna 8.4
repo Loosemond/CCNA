@@ -124,8 +124,8 @@ switchport mode trunk
 switchport trunk allowed vlan 10,11,255,100,101,200
 
 
-
-
+!---default route
+ip route 0.0.0.0 0.0.0.0 e0/1
 
 interface Vlan255
 ip address 172.19.12.1 255.255.255.0
