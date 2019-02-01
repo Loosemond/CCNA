@@ -32,6 +32,7 @@ interface serial 0/0/0
 description connect to budapest
 ip address 209.165.200.98 255.255.255.252
 ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
 ipv6 address fe80::3 link-local
 bandwidth 100000
 no shut
@@ -41,6 +42,7 @@ interface serial 0/0/1
 description connect Vienna
 ip address 63.49.54.21 255.255.255.252
 ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
 ipv6 address fe80::3 link-local
 bandwidth 50000
 no shut
@@ -51,6 +53,7 @@ interface serial 0/1/0
 description connect Bratislava
 ip address 56.16.20.213 255.255.255.252
 ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
 ipv6 address fe80::2 link-local
 bandwidth 100000
 no shut
@@ -119,4 +122,3 @@ ntp server 63.49.54.22 prefer
 exit
 
 copy running-config startup-config
-

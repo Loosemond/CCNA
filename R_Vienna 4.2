@@ -30,6 +30,7 @@ interface serial 0/0/0
 description connect to budapest
 ip address 193.136.60.106 255.255.255.252
 ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
 ipv6 address fe80::1 link-local
 bandwidth 100000
 ip nat inside
@@ -40,6 +41,7 @@ interface serial 0/0/1
 description connect liubliana
 ip address 63.49.54.22 255.255.255.252
 ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
 ipv6 address fe80::1 link-local
 bandwidth 100000
 ip nat inside

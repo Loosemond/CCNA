@@ -32,6 +32,7 @@ interface serial 0/0/1
 description connect to Vienna
 ip address 193.136.60.105 255.255.255.252
 ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
 ipv6 address fe80::2 link-local
 bandwidth 100000
 no shut
@@ -41,6 +42,7 @@ interface serial 0/0/0
 description connect liubliana
 ip address 209.165.200.97 255.255.255.252
 ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
 ipv6 address fe80::2 link-local
 bandwidth 50000
 no shut
