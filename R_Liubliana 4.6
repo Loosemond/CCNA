@@ -71,6 +71,7 @@ conf t
 interface Loopback0
 description LoopBack Liubliana Traffic Controllers
 ip address 172.19.20.1 255.255.254.0
+ip ospf 1 area 3
 ipv6 address 1000:0:0:20::0/64
 exit
 
@@ -83,24 +84,28 @@ exit
 interface Loopback2
 description Loopback Liubliana Administrative Personal
 ip address 172.19.22.1 255.255.254.0
+ip ospf 1 area 3
 ipv6 address 1000:0:0:22::0/64
 exit
 
 interface Loopback3
 description Loopback Liubliana VoIP
 ip address 172.19.16.1 255.255.252.0
+ip ospf 1 area 3
 ipv6 address 1000:0:0:23::0/64
 exit
 
 interface Loopback4
 description Loopback Liubliana Engineering
 ip address 172.19.24.1 255.255.254.0
+ip ospf 1 area 3
 ipv6 address 1000:0:0:24::0/64
 exit
 
 interface Loopback5
 description Loopback Liubliana Building Management
 ip address 172.19.28.1 255.255.254.0
+ip ospf 1 area 3
 ipv6 address 1000:0:0:25::0/64
 exit
 
