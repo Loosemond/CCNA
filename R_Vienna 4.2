@@ -96,6 +96,8 @@ ip nat inside source static tcp 172.19.8.1 80 interface giga 0/1 80
 end
 
 !--Rooting
-ip route 0.0.0.0 0.0.0.0 e0/1
+conf t
+ip route 0.0.0.0 0.0.0.0 giga0/1
+exit
 
 copy running-config startup-config
