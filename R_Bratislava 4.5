@@ -19,6 +19,9 @@ banner login !Efetue um backup de segurança antes de efetuar alterações!
 
 !----OSPF
 router ospf 1
+passive-interface default
+no passive-interface serial 0/0/0
+no passive-interface serial 0/0/1
 router-id 1.1.1.1
 area 1 range 172.19.0.0 255.255.240.0
 area 0 authentication message-digest
@@ -35,6 +38,8 @@ key-string netacad
 exit
 exit
 router eigrp 55
+passive-interface default
+no passive-interface serial 0/0/0
 no auto-summary
 network 172.19.192.0 0.0.0.255
 network 172.19.193.0 0.0.0.255
