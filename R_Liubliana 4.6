@@ -27,6 +27,21 @@ area 0 authentication message-digest
 default-information originate
 exit
 
+!----Eigrp
+conf t
+key chain AS100
+key 1
+key-string netacad
+exit
+exit
+router eigrp 55
+no auto-summary
+network 56.16.20.212 0.0.0.3
+redistribute OSPF 1 metric 1000 100 250 100 1500
+no redistribute static
+no default-metric 1000 100 250 100 1500
+exit
+
 !---Interfaceses
 interface serial 0/0/0
 description connect to budapest
@@ -56,12 +71,10 @@ exit
 interface serial 0/1/0
 description connect Bratislava
 ip address 56.16.20.213 255.255.255.252
-ip ospf 1 area 0
-ip ospf message-digest-key 1 md5 netacad
-ip ospf hello-interval 20
-ip ospf dead-interval 80
 ipv6 address fe80::2 link-local
 bandwidth 100000
+ip authentication mode eigrp 55 md5
+ip authentication key-chain eigrp 55 AS100
 no shut
 exit
 end
