@@ -14,6 +14,21 @@ login local
 transport input ssh
 exit
 
+
+!--MPLS
+ip routing
+ip cef
+!mpls ip
+
+!---OSPF
+router ospf 1
+passive-interface default
+no passive-interface Port-channel1
+router-id 1.1.1.6
+area 1 range 172.19.0.0 255.255.240.0
+area 0 authentication message-digest
+exit
+
 ! ----- Services
 ip dhcp snooping
 

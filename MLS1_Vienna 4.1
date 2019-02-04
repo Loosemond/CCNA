@@ -19,6 +19,22 @@ ip dhcp snooping
 
 service password-encryption
 
+
+
+!--MPLS
+ip routing
+ip cef
+!mpls ip
+
+!---OSPF
+router ospf 1
+passive-interface default
+no passive-interface Port-channel1
+router-id 1.1.1.5
+area 1 range 172.19.0.0 255.255.240.0
+area 0 authentication message-digest
+exit
+
 !---- VLANS
 vlan 10
 
@@ -134,10 +150,15 @@ Standby 200 preempt
 ip helper-address 172.19.10.1
 exit
 
-interface FastEthernet0/1
+interface gi0/1
 Description Link to Vienna
 No switchport
 Ip address 172.19.13.2 255.255.255.0
+mpls ip
+ip ospf 1 area 3
+ip ospf message-digest-key 1 md5 netacad
+ip ospf hello-interval 20
+ip ospf dead-interval 80
 duplex auto
 speed auto
 no shutdown

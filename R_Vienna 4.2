@@ -21,6 +21,7 @@ router ospf 1
 passive-interface default
 no passive-interface serial 0/0/0
 no passive-interface serial 0/0/1
+no passive-interface gigabitethernet0/0
 router-id 1.1.1.1
 area 1 range 172.19.0.0 255.255.240.0
 area 0 authentication message-digest
