@@ -46,7 +46,7 @@ switchport port-security maximum 3
 switchport port-security violation shutdown
 switchport port-security mac-address sticky
 ip dhcp snooping limit rate 10
-no ip dhcp snooping trust                                                       !- nao recebe DHCP offers
+dhcp snooping deny                                                       !- nao recebe DHCP offers
 no shutdown
 exit
 
@@ -61,7 +61,7 @@ switchport port-security maximum 3
 switchport port-security violation shutdown
 switchport port-security mac-address sticky
 ip dhcp snooping limit rate 10
-no ip dhcp snooping trust
+dhcp snooping deny
 no shutdown
 exit
 
