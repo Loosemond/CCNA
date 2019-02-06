@@ -56,7 +56,7 @@ ip ospf 1 area 0
 ip ospf message-digest-key 1 md5 netacad
 ip ospf hello-interval 20
 ip ospf dead-interval 80
-ipv6 address fe80::3 link-local
+ipv6 address 1000:0:0:30::0/64
 bandwidth 100000
 no shut
 exit
@@ -68,7 +68,7 @@ ip ospf 1 area 0
 ip ospf message-digest-key 1 md5 netacad
 ip ospf hello-interval 20
 ip ospf dead-interval 80
-ipv6 address fe80::3 link-local
+ipv6 address 1000:0:0:31::0/64
 bandwidth 50000
 no shut
 exit
@@ -77,7 +77,7 @@ exit
 interface serial 0/1/0
 description connect Bratislava
 ip address 56.16.20.213 255.255.255.252
-ipv6 address fe80::2 link-local
+ipv6 address 1000:0:0:32::0/64
 bandwidth 100000
 ip authentication mode eigrp 55 md5
 ip authentication key-chain eigrp 55 AS100
@@ -91,41 +91,41 @@ interface Loopback0
 description LoopBack Liubliana Traffic Controllers
 ip address 172.19.20.1 255.255.254.0
 ip ospf 1 area 3
-ipv6 address 1000:0:0:20::0/64
+ipv6 address 1000:0:0:33::0/64
 exit
 
 interface Loopback1
 description Loopback Liubliana IP CAMs
 ip address 172.19.26.1 255.255.254.0
-ipv6 address 1000:0:0:21::0/64
+ipv6 address 1000:0:0:34::0/64
 exit
 
 interface Loopback2
 description Loopback Liubliana Administrative Personal
 ip address 172.19.22.1 255.255.254.0
 ip ospf 1 area 3
-ipv6 address 1000:0:0:22::0/64
+ipv6 address 1000:0:0:35::0/64
 exit
 
 interface Loopback3
 description Loopback Liubliana VoIP
 ip address 172.19.16.1 255.255.252.0
 ip ospf 1 area 3
-ipv6 address 1000:0:0:23::0/64
+ipv6 address 1000:0:0:36::0/64
 exit
 
 interface Loopback4
 description Loopback Liubliana Engineering
 ip address 172.19.24.1 255.255.254.0
 ip ospf 1 area 3
-ipv6 address 1000:0:0:24::0/64
+ipv6 address 1000:0:0:37::0/64
 exit
 
 interface Loopback5
 description Loopback Liubliana Building Management
 ip address 172.19.28.1 255.255.254.0
 ip ospf 1 area 3
-ipv6 address 1000:0:0:25::0/64
+ipv6 address 1000:0:0:38::0/64
 exit
 
 
