@@ -16,7 +16,7 @@ exit
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
 
-!----OSPF
+!----OSPFv2
 router ospf 1
 passive-interface default
 no passive-interface serial 0/0/0
@@ -26,6 +26,35 @@ router-id 1.1.1.1
 area 1 range 172.19.0.0 255.255.240.0
 area 0 authentication message-digest
 default-information originate metric 30 metric-type 1 !--aumenta com a distancia
+exit
+ipv6 router ospf 1
+ router-id 1.1.1.1
+ default-information originate
+exit
+
+
+!----OSPFv3
+interface serial 0/0/0
+bandwidth 8000
+ip ospf hello-interval 20
+ip ospf dead-interval 40
+ip ospf message-digest-key 1 md5 KURWA
+
+ipv6 ospf 1 area 0
+ipv6 ospf hello-interval 20
+ipv6 ospf dead-interval 40
+exit
+
+
+interface serial 0/0/1
+bandwidth 8000
+ip ospf hello-interval 20
+ip ospf dead-interval 40
+ip ospf message-digest-key 1 md5 KURWA
+
+ipv6 ospf 1 area 0
+ipv6 ospf hello-interval 20
+ipv6 ospf dead-interval 40
 exit
 
 !---Interfaceses
