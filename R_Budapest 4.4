@@ -38,7 +38,7 @@ ip ospf 1 area 0
 ip ospf message-digest-key 1 md5 netacad
 ip ospf hello-interval 20
 ip ospf dead-interval 80
-ipv6 address fe80::2 link-local
+ipv6 address 1000:0:0:21::0/64
 bandwidth 100000
 no shut
 exit
@@ -50,7 +50,7 @@ ip ospf 1 area 0
 ip ospf message-digest-key 1 md5 netacad
 ip ospf hello-interval 20
 ip ospf dead-interval 80
-ipv6 address fe80::2 link-local
+ipv6 address 1000:0:0:20::0/64
 bandwidth 50000
 no shut
 exit
@@ -60,28 +60,28 @@ interface Loopback0
 description LoopBack Budapeste Software Development
 ip address 172.19.32.1 255.255.254.0
 ip ospf 1 area 2
-ipv6 address 1000:0:0:10::0/64
+ipv6 address 1000:0:0:22::0/64
 exit
 
 interface Loopback1
 description LoopBack Budapeste IT Staff
 ip address 172.19.34.1 255.255.254.0
 ip ospf 1 area 2
-ipv6 address 1000:0:0:11::0/64
+ipv6 address 1000:0:0:23::0/64
 exit
 
 interface Loopback2
 description LoopBack Budapeste Administrative Personal
 ip address 172.19.36.1 255.255.254.0
 ip ospf 1 area 2
-ipv6 address 1000:0:0:12::0/64
+ipv6 address 1000:0:0:24::0/64
 exit
 
 interface Loopback3
 description LoopBack Budapeste Building Management
 ip address 172.19.38.1 255.255.254.0
 ip ospf 1 area 2
-ipv6 address 1000:0:0:13::0/64
+ipv6 address 1000:0:0:25::0/64
 exit
 
 
@@ -89,14 +89,14 @@ interface Loopback4
 description LoopBack Budapeste VoIP
 ip address 172.19.40.1 255.255.254.0
 ip ospf 1 area 2
-ipv6 address 1000:0:0:14::0/64
+ipv6 address 1000:0:0:26::0/64
 exit
 
 interface Loopback5
 description LoopBack Budapeste Development Server
 ip address 172.19.42.1 255.255.254.0
 ip ospf 1 area 2
-ipv6 address 1000:0:0:15::0/64
+ipv6 address 1000:0:0:27::0/64
 exit
 
 
