@@ -51,7 +51,7 @@ exit
 interface serial 0/0/0
 description connect to Liubliana
 ip address 56.16.20.214 255.255.255.252
-ipv6 address fe80::4 link-local
+ipv6 address 1000:0:0:40::0/64
 ip nat inside
 bandwidth 100000
 ip authentication mode eigrp 55 md5
@@ -62,7 +62,7 @@ exit
 interface gigabitethernet0/1
 description Connecta a internet
 ip address dhcp
-ipv6 address 2001::2/64
+ipv6 address 1000:0:0:41::0/64
 ip nat outside
 duplex auto
 speed auto
@@ -80,19 +80,19 @@ exit
 interface Loopback0
 description LoopBack Bratislava branch to Administration
 ip address 172.19.192.1 255.255.255.0
-ipv6 address 1000:0:0:20::0/64
+ipv6 address 1000:0:0:42::0/64
 exit
 
 interface Loopback1
 description LoopBack Bratislava Branch to VoIP
 ip address 172.19.193.1 255.255.255.0
-ipv6 address 1000:0:0:21::0/64
+ipv6 address 1000:0:0:43::0/64
 exit
 
 interface Loopback2
 description LoopBack Bratislava Branch to Administritive Personal
 ip address 172.19.194.1 255.255.255.0
-ipv6 address 1000:0:0:22::0/64
+ipv6 address 1000:0:0:44::0/64
 exit
 
 !--Clock
