@@ -36,26 +36,8 @@ default-information originate
 exit
 interface serial 0/0/0
 bandwidth 8000
-ip ospf hello-interval 20
-ip ospf dead-interval 40
-ip ospf message-digest-key 1 md5 KURWA
-
-ipv6 ospf 3 area 0
-ipv6 ospf hello-interval 20
-ipv6 ospf dead-interval 40
 exit
 
-
-interface serial 0/0/1
-bandwidth 8000
-ip ospf hello-interval 20
-ip ospf dead-interval 40
-ip ospf message-digest-key 1 md5 KURWA
-
-ipv6 ospf 3 area 0
-ipv6 ospf hello-interval 20
-ipv6 ospf dead-interval 40
-exit
 
 !---Interfaceses
 
@@ -68,6 +50,8 @@ ip ospf hello-interval 20
 ip ospf dead-interval 80
 ipv6 address 1000:0:0:10::0/64
 ipv6 ospf 3 area 0
+ipv6 ospf hello-interval 20
+ipv6 ospf dead-interval 80
 bandwidth 100000
 ip nat inside
 no shut
@@ -82,6 +66,8 @@ ip ospf hello-interval 20
 ip ospf dead-interval 80
 ipv6 address 1000:0:0:11::0/64
 ipv6 ospf 3 area 0
+ipv6 ospf hello-interval 20
+ipv6 ospf dead-interval 80
 bandwidth 100000
 ip nat inside
 no shut
@@ -90,7 +76,8 @@ exit
 interface gi0/0
 description Connection to MLS1-Vienna
 ip address 172.19.13.1 255.255.255.0
-ip ospf 1 area 1
+ip ospf 1 area 1 
+ip ospf 1 area 0
 ip nat inside
 duplex auto
 speed auto
