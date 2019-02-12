@@ -11,9 +11,11 @@ exit
 crypto key generate rsa modulus 1024
 line con 0
 login local
-exit
+ipv6 unicast-routing
 service password-encryption
+exit
 
+conf t
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
 
@@ -62,7 +64,7 @@ exit
 interface gigabitethernet0/1
 description Connecta a internet
 ip address dhcp
-ipv6 address 1000:0:0:41::0/64
+ipv6 address 2001::2/64
 ip nat outside
 duplex auto
 speed auto
@@ -96,7 +98,6 @@ ipv6 address 1000:0:0:44::0/64
 exit
 
 !--Clock
-conf t
 ntp server 63.49.54.22
 
 !-----NAT
