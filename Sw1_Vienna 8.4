@@ -20,7 +20,7 @@ ip dhcp snooping
 ip default-gateway 172.19.12.254                                                !- ip do mls2 vlan Administration
 service password-encryption
 
-
+vtp mode server
 
 !----- IP Host List
 ip host SW2_Vienna 127.19.0.2
@@ -30,11 +30,11 @@ ip host R_Liubliana 193.136.60.106
 ip host R_Budapest 63.49.54.22
 
 !---- VTP
-vtp mode server                                                                 !- activa o vtp v1 em modo servidor
-vtp domain CCNA
-vtp password class
+no vtp mode server                                                                 !- activa o vtp v1 em modo servidor
+no vtp domain CCNA
+no vtp password class
 
-
+conf t
 !---- VLANS
 vlan 10
 
@@ -78,7 +78,7 @@ switchport port-security maximum 1
 switchport port-security violation shutdown
 switchport port-security mac-address sticky
 ip dhcp snooping limit rate 10
-dhcp snooping deny
+no ip dhcp snooping trust
 no shutdown
 exit
 
@@ -110,7 +110,6 @@ channel-group 1 mode active
 description Link to MLS1_Vienna
 Exit
 interface Port-channel 1
-switchport trunk
 switchport trunk native Vlan 254
 switchport trunk allowed vlan 10,11,255,100,101,200
 
@@ -120,12 +119,11 @@ description Link to MLS2_Vienna
 Exit
 interface Port-channel 2
 switchport trunk native Vlan 254
-switchport mode trunk
 switchport trunk allowed vlan 10,11,255,100,101,200
-
+exit
 
 !---default route
-ip route 0.0.0.0 0.0.0.0 e0/1
+default route 0.0.0.0 0.0.0.0 e0/1
 
 interface Vlan255
 ip address 172.19.12.1 255.255.255.0

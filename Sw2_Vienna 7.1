@@ -29,12 +29,45 @@ ip host R_Liubliana 193.136.60.106
 ip host R_Budapest 63.49.54.22
 
 !---- VTP
-vtp mode client                                                                 !- activa o vtp v1 em modo servidor
-vtp domain CCNA
-vtp password class
+vtp mode off                                                                 !- activa o vtp v1 em modo servidor
+no vtp domain CCNA
+no vtp password class
 
 
 !--vlans                                                                        !- foram apagadas pois estamos a usar vtp
+
+!---- VLANS
+vlan 10
+
+name External_Servers
+
+vlan 11
+name Internal_Servers
+
+vlan 200
+
+name Voice
+
+vlan 100
+
+name Engineering
+
+vlan 101
+
+name Administration
+
+vlan 254
+
+name Native
+
+vlan 255
+
+name Management
+
+vlan 299
+
+name BlackHole
+exit
 
 interface range FastEthernet0/1-10
 description porta com acesso Vlan100
@@ -46,7 +79,7 @@ switchport port-security maximum 3
 switchport port-security violation shutdown
 switchport port-security mac-address sticky
 ip dhcp snooping limit rate 10
-dhcp snooping deny                                                       !- nao recebe DHCP offers
+ip dhcp snooping trust                                                     !- nao recebe DHCP offers
 no shutdown
 exit
 
@@ -70,7 +103,6 @@ channel-group 1 mode active
 description Link to MLS1_Vienna
 Exit
 interface Port-channel 1
-switchport trunk
 switchport trunk native Vlan 254
 switchport trunk allowed vlan 10,11,255,100,101,200
 
@@ -82,7 +114,6 @@ description Link to MLS2_Vienna
 Exit
 interface Port-channel 2
 switchport trunk native Vlan 254
-switchport mode trunk
 switchport trunk allowed vlan 10,11,255,100,101,200
 exit
 !interface range Fastethernet0/21-24

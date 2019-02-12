@@ -20,14 +20,6 @@ ip routing
 ip cef
 !mpls ip
 
-!---OSPF
-router ospf 1
-passive-interface default
-no passive-interface Port-channel1
-router-id 1.1.1.6
-area 1 range 172.19.0.0 255.255.240.0
-area 0 authentication message-digest
-exit
 
 ! ----- Services
 ip dhcp snooping
@@ -154,6 +146,17 @@ exit
 
 interface Vlan255
 ip address 172.19.12.4 255.255.255.0
+
+
+!---OSPF
+router ospf 1
+passive-interface default
+no passive-interface Port-channel 1
+router-id 1.1.1.6
+area 1 range 172.19.0.0 255.255.240.0
+area 0 authentication message-digest
+exit
+
 
 !----- IP Host List
 ip host SW2_Vienna 127.19.0.2
