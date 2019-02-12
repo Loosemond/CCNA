@@ -38,7 +38,6 @@ area 3 range 1000:0:0:30::0/60
 exit
 
 !----Eigrp
-conf t
 key chain AS100
 key 1
 key-string netacad
@@ -46,7 +45,7 @@ exit
 exit
 router eigrp 55
 passive-interface default
-no passive-interface serial  0/1/0
+no passive-interface serial  0/2/0
 no auto-summary
 network 56.16.20.212 0.0.0.3
 redistribute OSPF 1 metric 1000 100 250 100 1500
