@@ -11,7 +11,7 @@ exit
 crypto key generate rsa modulus 1024
 line con 0
 login local
-exit
+ipv6 unicast-routing
 
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
@@ -27,13 +27,13 @@ area 1 range 172.19.0.0 255.255.240.0
 area 0 authentication message-digest
 default-information originate metric 30 metric-type 1 !--aumenta com a distancia
 exit
-ipv6 router ospf 1
- router-id 1.1.1.1
- default-information originate
-exit
 
 
 !----OSPFv3
+ipv6 router ospf 1
+router-id 1.1.1.1
+default-information originate
+exit
 interface serial 0/0/0
 bandwidth 8000
 ip ospf hello-interval 20
