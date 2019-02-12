@@ -63,7 +63,7 @@ ip ospf message-digest-key 1 md5 netacad
 ip ospf hello-interval 20
 ip ospf dead-interval 80
 ipv6 address 1000:0:0:30::0/64
-ipv6 ospf 1 area 0
+ipv6 ospf 3 area 0
 ipv6 ospf hello-interval 20
 ipv6 ospf dead-interval 40
 bandwidth 100000
@@ -78,7 +78,7 @@ ip ospf message-digest-key 1 md5 netacad
 ip ospf hello-interval 20
 ip ospf dead-interval 80
 ipv6 address 1000:0:0:31::0/64
-ipv6 ospf 1 area 0
+ipv6 ospf 3 area 0
 ipv6 ospf hello-interval 20
 ipv6 ospf dead-interval 40
 bandwidth 50000
@@ -104,14 +104,14 @@ description LoopBack Liubliana Traffic Controllers
 ip address 172.19.20.1 255.255.254.0
 ip ospf 1 area 3
 ipv6 address 1000:0:0:33::0/64
-ipv6 ospf 1 area 3
+ipv6 ospf 3 area 3
 exit
 
 interface Loopback1
 description Loopback Liubliana IP CAMs
 ip address 172.19.26.1 255.255.254.0
 ipv6 address 1000:0:0:34::0/64
-ipv6 ospf 1 area 3
+ipv6 ospf 3 area 3
 exit
 
 interface Loopback2
@@ -127,6 +127,7 @@ description Loopback Liubliana VoIP
 ip address 172.19.16.1 255.255.252.0
 ip ospf 1 area 3
 ipv6 address 1000:0:0:36::0/64
+ipv6 ospf 3 area 3
 exit
 
 interface Loopback4
@@ -142,7 +143,7 @@ description Loopback Liubliana Building Management
 ip address 172.19.28.1 255.255.254.0
 ip ospf 1 area 3
 ipv6 address 1000:0:0:38::0/64
-ipv6 ospf 1 area 3
+ipv6 ospf 3 area 3
 exit
 
 
