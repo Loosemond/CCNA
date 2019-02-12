@@ -29,7 +29,7 @@ ip cef
 !---OSPF
 router ospf 1
 passive-interface default
-no passive-interface gi0/1
+no passive-interface fa0/1
 router-id 1.1.1.5
 area 0 authentication message-digest
 exit
@@ -70,7 +70,7 @@ name BlackHole
 end
 !--MLS2_Vienna
 conf t
-interface range GigabitEthernet 0/23-24
+interface range fa 0/23-24
 channel-group 1 mode active
 Exit
 interface Port-channel 1
@@ -80,7 +80,7 @@ switchport mode trunk
 switchport trunk allowed vlan 10,11,255,100,101,200
 
 !--SW1_Vienna
-interface range GigabitEthernet 0/21-22
+interface range fa 0/21-22
 channel-group 2 mode active
 Exit
 interface Port-channel 2
@@ -90,7 +90,7 @@ switchport mode trunk
 switchport trunk allowed vlan 10,11,255,100,101,200
 
 !--SW2_Vienna
-interface range GigabitEthernet 0/19-20
+interface range fa 0/19-20
 channel-group 3 mode active
 Exit
 interface Port-channel 3
@@ -158,12 +158,12 @@ ip ospf 1 area 3
 ip helper-address 172.19.10.1
 exit
 
-interface gi0/1
+interface fa0/1
 Description Link to Vienna
 No switchport
 Ip address 172.19.13.2 255.255.255.0
-mpls ip
 ip ospf 1 area 3
+ip ospf 1 area 0
 ip ospf message-digest-key 1 md5 netacad
 ip ospf hello-interval 20
 ip ospf dead-interval 80

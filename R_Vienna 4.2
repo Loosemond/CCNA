@@ -77,6 +77,9 @@ description Connection to MLS1-Vienna
 ip address 172.19.13.1 255.255.255.0
 ip ospf 1 area 1
 ip ospf 1 area 0
+ip ospf hello-interval 20
+ip ospf dead-interval 80
+ip ospf message-digest-key 1 md5 netacad
 ip nat inside
 duplex auto
 speed auto
