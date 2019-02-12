@@ -32,6 +32,7 @@ exit
 ! ----- Services
 ip dhcp snooping
 
+ip default-gateway 172.19.12.3
 service password-encryption
 
 !---- VLANS
@@ -128,7 +129,7 @@ Exit
 int vlan 100
 description Engineering
 ip add 172.19.4.252 255.255.254.0
-standby 100 ip 172.19.5.254
+standby 100 ip 172.19.4.254
 Standby 100 priority 110
 ip helper-address 172.19.10.1
 exit
@@ -150,6 +151,9 @@ Standby 200 priority 110
 Standby 200 preempt
 ip helper-address 172.19.10.1
 exit
+
+interface Vlan255
+ip address 172.19.12.4 255.255.255.0
 
 !----- IP Host List
 ip host SW2_Vienna 127.19.0.2
