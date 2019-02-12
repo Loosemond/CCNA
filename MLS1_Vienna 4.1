@@ -30,7 +30,8 @@ ip cef
 router ospf 1
 passive-interface default
 no passive-interface fa0/1
-router-id 1.1.1.5
+no passive-interface vlan 255
+router-id 1.1.1.4
 area 0 authentication message-digest
 exit
 
@@ -79,6 +80,7 @@ switchport trunk native Vlan 254
 switchport mode trunk
 switchport trunk allowed vlan 10,11,255,100,101,200
 
+
 !--SW1_Vienna
 interface range fa 0/21-22
 channel-group 2 mode active
@@ -125,6 +127,10 @@ standby 255 ip 172.19.12.254
 Standby 255 priority 110
 Standby 255 preempt
 ip ospf 1 area 3
+ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
+ip ospf hello-interval 20
+ip ospf dead-interval 80
 Exit
 
 int vlan 100

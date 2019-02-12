@@ -100,6 +100,7 @@ ip add 172.19.8.252 255.255.254.0
 standby 10 ip 172.19.9.254                  !- o ip a ser usado que é o ultimo ip da rede (/23)
 Standby 10 priority 100
 Standby 10 preempt
+ip ospf 1 area 3
 Exit
 
 Interface vlan 11
@@ -108,6 +109,7 @@ ip add 172.19.10.252 255.255.254.0
 standby 101 ip 172.19.11.254
 Standby 101 priority 100
 Standby 101 preempt
+ip ospf 1 area 3
 Exit
 
 Interface vlan 255
@@ -116,6 +118,11 @@ ip add 172.19.12.252 255.255.255.0
 standby 255 ip 172.19.12.254
 Standby 255 priority 100
 Standby 255 preempt
+ip ospf 1 area 3
+ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
+ip ospf hello-interval 20
+ip ospf dead-interval 80
 Exit
 
 int vlan 100
@@ -124,6 +131,7 @@ ip add 172.19.4.252 255.255.254.0
 standby 100 ip 172.19.4.254
 Standby 100 priority 110
 ip helper-address 172.19.10.1
+ip ospf 1 area 3
 exit
 
 int vlan 101
@@ -133,6 +141,7 @@ standby 101 ip 172.19.7.254
 Standby 101 priority 110
 Standby 101 preempt
 ip helper-address 172.19.10.1
+ip ospf 1 area 3
 exit
 
 int vlan 200
@@ -142,21 +151,17 @@ standby 200 ip 172.19.3.254               !- este é /22 logo o ultimo ip e .3.2
 Standby 200 priority 110
 Standby 200 preempt
 ip helper-address 172.19.10.1
+ip ospf 1 area 3
 exit
-
-interface Vlan255
-ip address 172.19.12.4 255.255.255.0
 
 
 !---OSPF
 router ospf 1
-passive-interface default
-no passive-interface Port-channel 1
-router-id 1.1.1.6
-area 1 range 172.19.0.0 255.255.240.0
+no passive-interface vlan 255
+no passive-interface fa0/1
+router-id 1.1.1.5
 area 0 authentication message-digest
 exit
-
 
 !----- IP Host List
 ip host SW2_Vienna 127.19.0.2
