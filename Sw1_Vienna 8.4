@@ -137,9 +137,8 @@ ip dhcp snooping limit rate 10
 exit
 
 !---default route
-
+ip default-gateway 172.19.12.254
 !ip dhcp snooping
-ip default-gateway 172.19.13.1
 
 interface Vlan255
 ip address 172.19.12.1 255.255.255.0
