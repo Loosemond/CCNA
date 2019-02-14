@@ -99,10 +99,15 @@ no shutdown
 exit
 
 interface range FastEthernet 0/23-24
+no switchport mode access
+no switchport access vlan 1
 channel-group 1 mode active
 description Link to MLS1_Vienna
 Exit
 interface Port-channel 1
+no switchport mode access
+no switchport access vlan 1
+switchport mode trunk
 switchport trunk native Vlan 254
 switchport trunk allowed vlan 10,11,255,100,101,200
 ip dhcp snooping trust
@@ -111,10 +116,15 @@ ip dhcp snooping limit rate 10
 exit
 
 interface range FastEthernet 0/21-22
+no switchport mode access
+no switchport access vlan 1
 channel-group 2 mode active
 description Link to MLS2_Vienna
 Exit
 interface Port-channel 2
+no switchport mode access
+no switchport access vlan 1
+switchport mode trunk
 switchport trunk native Vlan 254
 switchport trunk allowed vlan 10,11,255,100,101,200
 ip dhcp snooping trust
