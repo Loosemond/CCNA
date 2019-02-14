@@ -81,7 +81,9 @@ interface Port-channel 2
 switchport trunk encapsulation dot1q
 switchport trunk native Vlan 254
 switchport mode trunk
-switchport trunk allowed vlan 10,11,255,100,101,200
+switchport trunk allowed vlan 10,11,255,100,101,200,254
+ip dhcp snooping trust
+ip dhcp snooping limit rate 10
 
 !--SW2_Vienna
 interface range FastEthernet 0/19-20
@@ -91,12 +93,14 @@ interface Port-channel 3
 switchport trunk encapsulation dot1q
 switchport trunk native Vlan 254
 switchport mode trunk
-switchport trunk allowed vlan 10,11,255,100,101,200
+switchport trunk allowed vlan 10,11,255,100,101,200,254
+ip dhcp snooping trust
+ip dhcp snooping limit rate 10
 
 
 interface vlan 10
 description External_Servers
-ip add 172.19.8.252 255.255.254.0
+ip add 172.19.9.252 255.255.254.0
 standby 10 ip 172.19.9.254                  !- o ip a ser usado que é o ultimo ip da rede (/23)
 Standby 10 priority 100
 Standby 10 preempt
@@ -105,7 +109,7 @@ Exit
 
 Interface vlan 11
 description Internal_Servers
-ip add 172.19.10.252 255.255.254.0
+ip add 172.19.11.252 255.255.254.0
 standby 101 ip 172.19.11.254
 Standby 101 priority 100
 Standby 101 preempt
@@ -127,8 +131,8 @@ Exit
 
 int vlan 100
 description Engineering
-ip add 172.19.4.252 255.255.254.0
-standby 100 ip 172.19.4.254
+ip add 172.19.5.252 255.255.254.0
+standby 100 ip 172.19.5.254
 Standby 100 priority 110
 ip helper-address 172.19.10.1
 ip ospf 1 area 3
@@ -136,7 +140,7 @@ exit
 
 int vlan 101
 description Administration
-ip add 172.19.6.252 255.255.254.0
+ip add 172.19.7.252 255.255.254.0
 standby 101 ip 172.19.7.254
 Standby 101 priority 110
 Standby 101 preempt
@@ -146,7 +150,7 @@ exit
 
 int vlan 200
 description Voice
-ip add 172.19.0.252 255.255.252.0
+ip add 172.19.3.252 255.255.252.0
 standby 200 ip 172.19.3.254               !- este é /22 logo o ultimo ip e .3.254
 Standby 200 priority 110
 Standby 200 preempt
@@ -162,6 +166,14 @@ no passive-interface fa0/1
 router-id 1.1.1.5
 area 0 authentication message-digest
 exit
+! ----- Spanning Tree
+spanning-tree mode rapid-pvst
+spanning-tree vlan 100 root primary
+spanning-tree vlan 101 root primary
+spanning-tree vlan 200 root primary
+spanning-tree vlan 10 root secondary
+spanning-tree vlan 11 root secondary
+spanning-tree vlan 255 root secondary
 
 !----- IP Host List
 ip host SW2_Vienna 127.19.0.2

@@ -30,7 +30,7 @@ ip host R_Liubliana 193.136.60.106
 ip host R_Budapest 63.49.54.22
 
 !---- VTP
-no vtp mode server                                                                 !- activa o vtp v1 em modo servidor
+vtp mode off                                                                !- activa o vtp v1 em modo servidor
 no vtp domain CCNA
 no vtp password class
 
@@ -112,6 +112,8 @@ Exit
 interface Port-channel 1
 switchport trunk native Vlan 254
 switchport trunk allowed vlan 10,11,255,100,101,200
+ip dhcp snooping trust
+ip dhcp snooping limit rate 10
 
 interface range FastEthernet 0/21-22
 channel-group 2 mode active
@@ -120,10 +122,14 @@ Exit
 interface Port-channel 2
 switchport trunk native Vlan 254
 switchport trunk allowed vlan 10,11,255,100,101,200
+ip dhcp snooping trust
+ip dhcp snooping limit rate 10
 exit
 
 !---default route
-default route 0.0.0.0 0.0.0.0 e0/1
+
+!ip dhcp snooping
+ip default-gateway 172.19.13.1
 
 interface Vlan255
 ip address 172.19.12.1 255.255.255.0
