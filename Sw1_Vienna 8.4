@@ -26,7 +26,7 @@ vtp mode server
 ip host R_Vienna 193.136.60.106 63.49.54.22
 ip host R_Budapest 193.136.60.105 209.165.200.97
 ip host R_Liubliana 209.165.200.98 63.49.54.21
-ip host R_Bratislava 56.16.20.214 
+ip host R_Bratislava 56.16.20.214
 ip host Sw1_Vienna 172.19.12.1
 ip host Sw2_Vienna 172.19.12.2
 ip host MLS1_Vienna 172.19.13.253
@@ -80,6 +80,7 @@ switchport port-security
 switchport port-security maximum 1
 switchport port-security violation shutdown
 switchport port-security mac-address sticky
+no ip dhcp snooping trust
 ip dhcp snooping limit rate 10
 no ip dhcp snooping trust
 no shutdown
@@ -120,7 +121,6 @@ no switchport access vlan 1
 switchport mode trunk
 switchport trunk native Vlan 254
 switchport trunk allowed vlan 10,11,255,100,101,200
-ip dhcp snooping trust
 ip dhcp snooping limit rate 10
 
 interface range FastEthernet 0/21-22
@@ -135,7 +135,6 @@ no switchport access vlan 1
 switchport mode trunk
 switchport trunk native Vlan 254
 switchport trunk allowed vlan 10,11,255,100,101,200
-ip dhcp snooping trust
 ip dhcp snooping limit rate 10
 exit
 

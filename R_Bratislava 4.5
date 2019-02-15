@@ -19,19 +19,6 @@ conf t
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
 
-!----OSPF
-router ospf 1
-passive-interface default
-no passive-interface serial 0/0/0
-no passive-interface serial 0/0/1
-router-id 1.1.1.1
-area 1 range 172.19.0.0 255.255.240.0
-area 0 authentication message-digest
-default-information originate
-exit
-
-
-
 !----Eigrp
 conf t
 key chain AS100
@@ -47,6 +34,7 @@ network 172.19.192.0 0.0.0.255
 network 172.19.193.0 0.0.0.255
 network 172.19.194.0 0.0.0.255
 network 56.16.20.212 0.0.0.3
+redistribute static
 exit
 
 !---Interfaceses
@@ -55,7 +43,7 @@ description connect to Liubliana
 ip address 56.16.20.214 255.255.255.252
 ipv6 address fe80::4 link-local
 ip nat inside
-bandwidth 100000
+bandwidth 10000
 ip authentication mode eigrp 55 md5
 ip authentication key-chain eigrp 55 AS100
 no shut
@@ -100,17 +88,13 @@ exit
 !--Clock
 ntp server 63.49.54.22
 
+!--Rooting
+conf t
+ip route 0.0.0.0 0.0.0.0 giga0/1
+exit
+
+
 !-----NAT
 ip nat inside source list 10 interface giga 0/1 overload
-
-!-------HOST TABLE
-ip host R_Vienna 193.136.60.106 63.49.54.22
-ip host R_Budapest 193.136.60.105 209.165.200.97
-ip host R_Liubliana 209.165.200.98 63.49.54.21
-ip host R_Bratislava 56.16.20.214 
-ip host Sw1_Vienna 172.19.12.1
-ip host Sw2_Vienna 172.19.12.2
-ip host MLS1_Vienna 172.19.13.253
-ip host MLS2_Vienna 172.19.13.252
 
 do copy running-config startup-config

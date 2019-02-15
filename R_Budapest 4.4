@@ -62,6 +62,7 @@ ip ospf message-digest-key 1 md5 netacad
 ip ospf hello-interval 20
 ip ospf dead-interval 80
 no ipv6 address 1000:0:0:20::0/64
+ip ospf cost 120
 ipv6 address fe80::2 link-Local
 ipv6 ospf cost 60000
 ipv6 ospf 3 area 0
@@ -127,7 +128,7 @@ exit
 ip host R_Vienna 193.136.60.106 63.49.54.22
 ip host R_Budapest 193.136.60.105 209.165.200.97
 ip host R_Liubliana 209.165.200.98 63.49.54.21
-ip host R_Bratislava 56.16.20.214 
+ip host R_Bratislava 56.16.20.214
 ip host Sw1_Vienna 172.19.12.1
 ip host Sw2_Vienna 172.19.12.2
 ip host MLS1_Vienna 172.19.13.253
