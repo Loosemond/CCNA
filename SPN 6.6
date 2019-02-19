@@ -1,0 +1,100 @@
+en
+conf t
+hostname SPN
+username cisco secret class
+username cisco privilege 15
+ip domain-name ccna-lab.com
+line vty 0 4
+transport input ssh
+login local
+exit
+crypto key generate rsa modulus 1024
+line con 0
+login local
+ipv6 unicast-routing
+
+banner motd !Acesso Restrito a Utilizadores Autorizados!
+banner login !Efetue um backup de segurança antes de efetuar alterações!
+
+!----OSPFv2
+router ospf 1
+passive-interface default
+no passive-interface serial 0/0/0
+no passive-interface serial 0/0/1
+no passive-interface gigabitethernet0/0
+router-id 1.1.1.1
+area 0 authentication message-digest
+default-information originate metric 30 metric-type 1 !--aumenta com a distancia
+exit
+
+
+!----OSPFv3
+ipv6 router ospf 5
+router-id 1.1.1.1
+default-information originate
+exit
+interface serial 0/0/0
+bandwidth 8000
+exit
+
+!----Interfaceses
+
+interface serial 0/0/0
+description connect to R_Vienna
+ip address 193.136.60.106 255.255.255.252
+ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
+ip ospf hello-interval 20
+ip ospf dead-interval 80
+ipv6 address fe80::5 link-local
+ipv6 ospf 3 area 0
+ipv6 ospf hello-interval 20
+ipv6 ospf dead-interval 80
+bandwidth 100000
+ip nat inside
+no shut
+exit
+
+interface gigabitethernet0/0
+description connect to R_Budapest
+ip address 209.165.200.98 255.255.255.252
+ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
+ip ospf hello-interval 20
+ip ospf dead-interval 80
+no ipv6 address 1000:0:0:21::0/64
+ipv6 address fe80::5 link-Local
+ipv6 ospf 3 area 0
+ipv6 ospf hello-interval 20
+ipv6 ospf dead-interval 40
+bandwidth 100000
+no shut
+exit
+
+interface gigabitethernet0/1
+description connect to R_Liubliana
+ip address 63.49.54.22 255.255.255.252
+ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
+ip ospf hello-interval 20
+ip ospf dead-interval 80
+no ipv6 address 1000:0:0:21::0/64
+ipv6 address fe80::5 link-Local
+ipv6 ospf 3 area 0
+ipv6 ospf hello-interval 20
+ipv6 ospf dead-interval 40
+bandwidth 100000
+no shut
+exit
+
+
+!-------HOST TABLE
+ip host R_Vienna 193.136.60.106
+ip host R_Budapest 209.165.200.97
+ip host R_Liubliana 63.49.54.21
+ip host R_Bratislava 56.16.20.214
+ip host Sw1_Vienna 172.19.12.1
+ip host Sw2_Vienna 172.19.12.2
+ip host MLS1_Vienna 172.19.13.253
+ip host MLS2_Vienna 172.19.13.252
+ip host SPN 63.49.54.22 19.136.60.107 209.165.200.98
