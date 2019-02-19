@@ -41,7 +41,7 @@ exit
 !---Interfaceses
 
 interface serial 0/0/0
-description connect to budapest
+description connect to SPN
 ip address 193.136.60.106 255.255.255.252
 ip ospf 1 area 0
 ip ospf message-digest-key 1 md5 netacad
@@ -56,26 +56,9 @@ ip nat inside
 no shut
 exit
 
-interface serial 0/0/1
-description connect liubliana
-ip address 63.49.54.22 255.255.255.252
-ip ospf 1 area 0
-ip ospf message-digest-key 1 md5 netacad
-ip ospf hello-interval 20
-ip ospf dead-interval 80
-no ipv6 address 1000:0:0:11::0/64
-ipv6 address fe80::1 link-local
-ipv6 ospf 3 area 0
-ipv6 ospf hello-interval 20
-ipv6 ospf dead-interval 80
-bandwidth 100000
-ip nat inside
-no shut
-exit
-
 interface gi0/0
 description Connection to MLS1-Vienna
-ip address 172.19.13.1 255.255.255.0
+ip address 172.19.13.1 255.255.255.252
 ip ospf 1 area 1
 ip ospf 1 area 0
 ip ospf hello-interval 20
@@ -92,6 +75,20 @@ description Connects to Internet
 ip address dhcp
 ipv6 address 2001::1/64
 ip nat outside
+duplex auto
+speed auto
+no shutdown
+exit
+
+interface gigabitethernet 0/2
+description Connection to MLS2_Vienna
+ip address 172.19.13.5 255.255.252
+ip ospf 1 area 1
+ip ospf 1 area 0
+ip ospf hello-interval 20
+ip ospf dead-interval 80
+ip ospf message-digest-key 1 md5 netacad
+ip nat inside
 duplex auto
 speed auto
 no shutdown
