@@ -1,0 +1,147 @@
+en
+conf t
+hostname SW2_Vienna
+username cisco privilege 15 secret class
+banner login !Efetue um backup de segurança antes de efetuar alteracoes!
+ip domain name CCNA_lab.com
+crypto key generate rsa modulus 1024 exportable
+line con 0
+login local
+exit
+line vty 0 4
+privilege level 15
+login local
+transport input ssh
+exit
+
+
+!--Services
+ip dhcp snooping
+ip default-gateway 172.19.12.254                                                !- ip do mls2 vlan Administration
+service password-encryption
+
+
+!----- IP Host List
+ip host SW2_Vienna 127.19.0.2
+ip host SW1_Vienna 127.19.0.1
+ip host R_Vienna 193.136.60.106
+ip host R_Liubliana 193.136.60.106
+ip host R_Budapest 63.49.54.22
+
+!---- VTP
+vtp mode off                                                                 !- activa o vtp v1 em modo servidor
+no vtp domain CCNA
+no vtp password class
+
+
+!--vlans                                                                        !- foram apagadas pois estamos a usar vtp
+
+!---- VLANS
+vlan 10
+
+name External_Servers
+
+vlan 11
+name Internal_Servers
+
+vlan 200
+
+name Voice
+
+vlan 100
+
+name Engineering
+
+vlan 101
+
+name Administration
+
+vlan 254
+
+name Native
+
+vlan 255
+
+name Management
+
+vlan 299
+
+name BlackHole
+exit
+
+interface range FastEthernet0/1-10
+description porta com acesso Vlan100
+switchport access vlan 100
+switchport mode access
+switchport nonegotiate
+switchport port-security
+switchport port-security maximum 3
+switchport port-security violation shutdown
+switchport port-security mac-address sticky
+ip dhcp snooping limit rate 10
+no ip dhcp snooping trust                                                     !- nao recebe DHCP offers
+no shutdown
+exit
+
+interface range FastEthernet0/11-20
+
+description Porta com acesso Vlan101
+switchport access vlan 101
+switchport mode access
+switchport nonegotiate
+switchport port-security
+switchport port-security maximum 3
+switchport port-security violation shutdown
+switchport port-security mac-address sticky
+ip dhcp snooping limit rate 10
+no ip dhcp snooping trust
+no shutdown
+exit
+
+interface range FastEthernet 0/23-24
+no switchport mode access
+no switchport access vlan 1
+channel-group 1 mode active
+description Link to MLS1_Vienna
+Exit
+interface Port-channel 1
+no switchport mode access
+no switchport access vlan 1
+switchport mode trunk
+switchport trunk native Vlan 254
+switchport trunk allowed vlan 10,11,255,100,101,200
+no ip dhcp snooping trust
+ip dhcp snooping limit rate 10
+
+exit
+
+interface range FastEthernet 0/21-22
+no switchport mode access
+no switchport access vlan 1
+channel-group 2 mode active
+description Link to MLS2_Vienna
+Exit
+interface Port-channel 2
+no switchport mode access
+no switchport access vlan 1
+switchport mode trunk
+switchport trunk native Vlan 254
+switchport trunk allowed vlan 10,11,255,100,101,200
+no ip dhcp snooping trust
+ip dhcp snooping limit rate 10
+exit
+!interface range Fastethernet0/21-24
+!description Porta com acesso Vlan299
+!switchport access vlan 299
+!no ip dhcp snooping trust
+!shut
+!exit
+
+ip default-gateway 172.19.12.254
+
+
+interface Vlan255
+ip address 172.19.12.2 255.255.255.0
+
+! ----- Spanning Tree
+spanning-tree mode rapid-pvst
