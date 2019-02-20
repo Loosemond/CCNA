@@ -16,6 +16,12 @@ ipv6 unicast-routing
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
 
+!---BGP
+router bgp 60001
+neighbor 193.136.60.105 remote-as 60000
+no synchronization
+exit
+
 !----OSPFv2
 router ospf 1
 passive-interface default
@@ -36,6 +42,8 @@ exit
 interface serial 0/0/0
 bandwidth 8000
 exit
+
+
 
 
 !---Interfaceses
@@ -94,6 +102,9 @@ speed auto
 no shutdown
 exit
 
+!---VPN pag 518
+interface Tunnel1
+
 !-----NTP
 ntp master 1
 
@@ -106,7 +117,7 @@ ip host Sw1_Vienna 172.19.12.1
 ip host Sw2_Vienna 172.19.12.2
 ip host MLS1_Vienna 172.19.12.253
 ip host MLS2_Vienna 172.19.12.252
-ip host SPN 63.49.54.22 19.136.60.107 209.165.200.98
+ip host SPN 63.49.54.22 193.136.60.107 209.165.200.98
 
 ! ----- NAT
 access-list 10 deny 172.19.40.0 0.0.1.255
