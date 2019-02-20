@@ -21,12 +21,18 @@ ip default-gateway 172.19.12.254                                                
 service password-encryption
 
 
-!----- IP Host List
-ip host SW2_Vienna 127.19.0.2
-ip host SW1_Vienna 127.19.0.1
+
+!-------HOST TABLE
 ip host R_Vienna 193.136.60.106
-ip host R_Liubliana 193.136.60.106
-ip host R_Budapest 63.49.54.22
+ip host R_Budapest 209.165.200.97
+ip host R_Liubliana 63.49.54.21
+ip host R_Bratislava 56.16.20.214
+ip host Sw1_Vienna 172.19.12.1
+ip host Sw2_Vienna 172.19.12.2
+ip host MLS1_Vienna 172.19.12.253
+ip host MLS2_Vienna 172.19.12.252
+ip host SPN 63.49.54.22 19.136.60.107 209.165.200.98
+
 
 !---- VTP
 vtp mode off                                                                 !- activa o vtp v1 em modo servidor

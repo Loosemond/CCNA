@@ -29,6 +29,8 @@ exit
 router eigrp 55
 passive-interface default
 no passive-interface multilink 1
+no passive-interface s0/0/0
+no passive-interface s0/0/1
 no auto-summary
 network 172.19.192.0 0.0.0.255
 network 172.19.193.0 0.0.0.255
@@ -118,6 +120,16 @@ conf t
 ip route 0.0.0.0 0.0.0.0 giga0/1
 exit
 
+!-------HOST TABLE
+ip host R_Vienna 193.136.60.106
+ip host R_Budapest 209.165.200.97
+ip host R_Liubliana 63.49.54.21
+ip host R_Bratislava 56.16.20.214
+ip host Sw1_Vienna 172.19.12.1
+ip host Sw2_Vienna 172.19.12.2
+ip host MLS1_Vienna 172.19.12.253
+ip host MLS2_Vienna 172.19.12.252
+ip host SPN 63.49.54.22 19.136.60.107 209.165.200.98
 
 !-----NAT
 ip nat inside source list 10 interface giga 0/1 overload

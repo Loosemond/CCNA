@@ -20,7 +20,7 @@ banner login !Efetue um backup de segurança antes de efetuar alterações!
 router ospf 1
 passive-interface default
 no passive-interface serial 0/0/0
-no passive-interface serial 0/0/1
+no passive-interface gigabitethernet0/2
 no passive-interface gigabitethernet0/0
 router-id 1.1.1.1
 area 0 authentication message-digest
@@ -82,7 +82,7 @@ exit
 
 interface gigabitethernet 0/2
 description Connection to MLS2_Vienna
-ip address 172.19.13.5 255.255.252
+ip address 172.19.13.5 255.255.255.252
 ip ospf 1 area 1
 ip ospf 1 area 0
 ip ospf hello-interval 20
@@ -104,8 +104,8 @@ ip host R_Liubliana 63.49.54.21
 ip host R_Bratislava 56.16.20.214
 ip host Sw1_Vienna 172.19.12.1
 ip host Sw2_Vienna 172.19.12.2
-ip host MLS1_Vienna 172.19.13.253
-ip host MLS2_Vienna 172.19.13.252
+ip host MLS1_Vienna 172.19.12.253
+ip host MLS2_Vienna 172.19.12.252
 ip host SPN 63.49.54.22 19.136.60.107 209.165.200.98
 
 ! ----- NAT

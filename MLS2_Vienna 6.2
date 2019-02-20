@@ -158,6 +158,19 @@ ip helper-address 172.19.10.1
 ip ospf 1 area 3
 exit
 
+interface fa0/1
+Description Link to Vienna
+No switchport
+Ip address 172.19.13.6 255.255.255.252
+ip ospf 1 area 3
+ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
+ip ospf hello-interval 20
+ip ospf dead-interval 80
+duplex auto
+speed auto
+no shutdown
+exit
 
 !---OSPF
 router ospf 1
@@ -166,6 +179,8 @@ no passive-interface fa0/1
 router-id 1.1.1.5
 area 0 authentication message-digest
 exit
+
+
 ! ----- Spanning Tree
 spanning-tree mode rapid-pvst
 spanning-tree vlan 100 root primary
@@ -176,11 +191,12 @@ spanning-tree vlan 11 root secondary
 spanning-tree vlan 255 root secondary
 
 !-------HOST TABLE
-ip host R_Vienna 193.136.60.106 63.49.54.22
-ip host R_Budapest 193.136.60.105 209.165.200.97
-ip host R_Liubliana 209.165.200.98 63.49.54.21
-ip host R_Bratislava 56.16.20.214 
+ip host R_Vienna 193.136.60.106
+ip host R_Budapest 209.165.200.97
+ip host R_Liubliana 63.49.54.21
+ip host R_Bratislava 56.16.20.214
 ip host Sw1_Vienna 172.19.12.1
 ip host Sw2_Vienna 172.19.12.2
-ip host MLS1_Vienna 172.19.13.253
-ip host MLS2_Vienna 172.19.13.252
+ip host MLS1_Vienna 172.19.12.253
+ip host MLS2_Vienna 172.19.12.252
+ip host SPN 63.49.54.22 19.136.60.107 209.165.200.98
