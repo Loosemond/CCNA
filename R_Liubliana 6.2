@@ -159,6 +159,21 @@ ipv6 address 1000:0:0:35::1/64
 ipv6 ospf 3 area 3
 exit
 
+!---VPN
+
+interface Tunnel1
+description VPN to Budapeste
+ip address 10.0.0.9 255.255.255.252
+tunnel source 63.49.54.21
+tunnel destination 209.165.200.97
+exit
+
+interface Tunnel2
+description VPN to Vienna
+ip address 10.0.0.6 255.255.255.252
+tunnel source 63.49.54.21
+tunnel destination 193.136.60.106
+exit
 
 !-------HOST TABLE
 ip host R_Vienna 193.136.60.106
