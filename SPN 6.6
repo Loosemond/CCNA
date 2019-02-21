@@ -16,16 +16,6 @@ ipv6 unicast-routing
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
 
-!----OSPFv2
-router ospf 1
-passive-interface default
-no passive-interface serial 0/0/0
-no passive-interface gigabitethernet0/0
-no passive-interface gigabitethernet0/1
-router-id 1.1.1.6
-area 0 authentication message-digest
-default-information originate metric 30 metric-type 1 !--aumenta com a distancia
-exit
 
 !---BGP
 router bgp 60000
@@ -35,29 +25,12 @@ neighbor  63.49.54.21 remote-as 60003
 no synchronization
 exit
 
-
-!----OSPFv3
-ipv6 router ospf 5
-router-id 1.1.1.6
-default-information originate
-exit
-interface serial 0/0/0
-bandwidth 8000
-exit
-
 !----Interfaceses
 
 interface serial 0/0/0
 description connect to R_Vienna
 ip address 193.136.60.105 255.255.255.252
-ip ospf 1 area 0
-ip ospf message-digest-key 1 md5 netacad
-ip ospf hello-interval 20
-ip ospf dead-interval 80
 ipv6 address fe80::5 link-local
-ipv6 ospf 3 area 0
-ipv6 ospf hello-interval 20
-ipv6 ospf dead-interval 80
 bandwidth 100000
 
 no shut
@@ -66,15 +39,7 @@ exit
 interface gigabitethernet0/0
 description connect to R_Budapest
 ip address 209.165.200.98 255.255.255.252
-ip ospf 1 area 0
-ip ospf message-digest-key 1 md5 netacad
-ip ospf hello-interval 20
-ip ospf dead-interval 80
-no ipv6 address 1000:0:0:21::0/64
 ipv6 address fe80::5 link-Local
-ipv6 ospf 3 area 0
-ipv6 ospf hello-interval 20
-ipv6 ospf dead-interval 40
 bandwidth 100000
 no shut
 exit
@@ -82,15 +47,7 @@ exit
 interface gigabitethernet0/1
 description connect to R_Liubliana
 ip address 63.49.54.22 255.255.255.252
-ip ospf 1 area 0
-ip ospf message-digest-key 1 md5 netacad
-ip ospf hello-interval 20
-ip ospf dead-interval 80
-no ipv6 address 1000:0:0:21::0/64
 ipv6 address fe80::5 link-Local
-ipv6 ospf 3 area 0
-ipv6 ospf hello-interval 20
-ipv6 ospf dead-interval 40
 bandwidth 100000
 no shut
 exit
