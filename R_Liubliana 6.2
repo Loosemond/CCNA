@@ -64,15 +64,7 @@ exit
 interface gi 0/1
 description connect to SPN
 ip address 63.49.54.21 255.255.255.252
-ip ospf 1 area 0
-ip ospf message-digest-key 1 md5 netacad
-ip ospf hello-interval 20
-ip ospf dead-interval 80
 ipv6 address fe80::3 link-local
-ipv6 ospf 3 area 0
-ipv6 ospf hello-interval 20
-ipv6 ospf dead-interval 40
-bandwidth 50000
 no shut
 exit
 
@@ -169,6 +161,7 @@ ip ospf 1 area 0
 ip ospf message-digest-key 1 md5 netacad
 ip ospf hello-interval 20
 ip ospf dead-interval 80
+ip ospf cost 120
 ipv6 address fe80::3 link-local
 ipv6 ospf 3 area 0
 ipv6 ospf hello-interval 20
