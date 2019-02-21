@@ -44,6 +44,7 @@ ip dhcp pool Voice
  network 172.19.0.0 255.255.252.0
  default-router 172.19.3.254
  dns-server 172.16.208.66 193.136.60.10
+ option 150 ip 172.19.8.1
  lease 8
  exit
 
@@ -76,6 +77,16 @@ ip route 0.0.0.0 0.0.0.0 172.19.11.254
 
 !--Clock
 ntp server 172.19.10.254  prefer
+
+!----Phones
+clock timezone WET 0 0
+clock summer-time WEST recurring last Sun Mar 1:00 last Sun Oct 2:00
+
+telephony-Service
+max-ephone 64
+max-dn 128
+system message Welcome home Darling
+
 
 
 !-------HOST TABLE
