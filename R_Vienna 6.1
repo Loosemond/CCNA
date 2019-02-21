@@ -104,17 +104,35 @@ exit
 
 !---VPN pag 518
 interface Tunnel1
-description VPN to Budapeste
+description VPN to Budapest
 ip address 10.0.0.1 255.255.255.252
+ipv6 address fe80::1 link-local
 tunnel source 193.136.60.106
 tunnel destination 209.165.200.97
+ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
+ip ospf hello-interval 20
+ip ospf dead-interval 80
+ipv6 ospf 3 area 0
+ipv6 ospf hello-interval 20
+ipv6 ospf dead-interval 80
+bandwidth 100000
 exit
 
 interface Tunnel2
 description VPN to Liubliana
 ip address 10.0.0.5 255.255.255.252
+ipv6 address fe80::1 link-Local
 tunnel source 193.136.60.106
 tunnel destination 63.49.54.21
+ip ospf 1 area 0
+ip ospf message-digest-key 1 md5 netacad
+ip ospf hello-interval 20
+ip ospf dead-interval 80
+ipv6 ospf 3 area 0
+ipv6 ospf hello-interval 20
+ipv6 ospf dead-interval 80
+bandwidth 100000
 exit
 !-----NTP
 ntp master 1
