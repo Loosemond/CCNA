@@ -23,7 +23,7 @@ banner motd $ Acesso  Restrito  a Utilizadores Autorizados $
 
 ! ----- Services
 service password-encryption
-service dhcp
+service DHCP
 ! ----- DHCP
 interface gigabitEthernet 0/1
 ip address 172.19.10.1 255.255.254.0
@@ -86,6 +86,32 @@ telephony-Service
 max-ephone 64
 max-dn 128
 system message Hello Welcome to McDonalds How can I help you
+cnf-file location flash:
+load 7912 CP7912080004SCCP0108A.sbin
+create cnf-files
+
+ephone-dn 1
+number 1000
+exit
+
+ephone 1
+mac-address 0015.638A.CBDD
+type 7912
+button 1:1
+exit
+
+ephone-dn 2
+number 2000
+exit
+
+ephone 2
+mac-address 0015.63AC.AACD
+type 7912
+button 1:2
+exit
+
+!---ntp
+ntp server 193.136.60.106
 
 
 
