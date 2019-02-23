@@ -17,6 +17,9 @@ exit
 
 ! ----- Services
 ip dhcp snooping
+ip dhcp snooping Vlan 200
+ip dhcp snooping Vlan 100
+ip dhcp snooping Vlan 101
 ip default-gateway 172.19.12.254                                                !- ip do mls2 vlan Administration
 service password-encryption
 
@@ -74,7 +77,7 @@ vlan 299
 name BlackHole
 exit
 !--- liga ao server HTTP -> 0/0
-interface range FastEthernet0/1-10
+interface range FastEthernet0/5-14
 description porta com acesso Vlan10
 switchport access vlan 10
 switchport mode access
@@ -85,12 +88,11 @@ switchport port-security violation shutdown
 switchport port-security mac-address sticky
 no ip dhcp snooping trust
 ip dhcp snooping limit rate 10
-no ip dhcp snooping trust
 no shutdown
 exit
 
 !--- liga ao server DHCP -> 0/1
-interface range FastEthernet0/11-20
+interface range FastEthernet0/15-26
 description Porta com acesso Vlan11
 switchport access vlan 11
 switchport mode access
@@ -132,6 +134,7 @@ no switchport access vlan 1
 channel-group 2 mode active
 description Link to MLS2_Vienna
 Exit
+
 interface Port-channel 2
 no switchport mode access
 no switchport access vlan 1

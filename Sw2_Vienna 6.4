@@ -17,6 +17,9 @@ exit
 
 !--Services
 ip dhcp snooping
+ip dhcp snooping Vlan 200
+ip dhcp snooping Vlan 100
+ip dhcp snooping Vlan 101
 ip default-gateway 172.19.12.254                                                !- ip do mls2 vlan Administration
 service password-encryption
 
@@ -73,9 +76,25 @@ name Management
 vlan 299
 
 name BlackHole
+
+vlan 201
+
+name Wireless
+
+vlan 202
+name Wireless-Guest
 exit
 
-interface range FastEthernet0/1-10
+interface range gigabitEthernet 0/1-2
+switchport mode trunk
+switchport trunk native Vlan 254
+switchport trunk allowed vlan 201,202,254,255
+ip dhcp snooping limit rate 10
+no ip dhcp snooping trust
+no shutdown
+Exit
+
+interface range FastEthernet0/5-14
 description porta com acesso Vlan100
 switchport access vlan 100
 switchport mode access
@@ -84,13 +103,14 @@ switchport port-security
 switchport port-security maximum 3
 switchport port-security violation shutdown
 switchport port-security mac-address sticky
+mls qos trust cos
+switchport voice vlan 200
 ip dhcp snooping limit rate 10
-no ip dhcp snooping trust                                                     !- nao recebe DHCP offers
+no ip dhcp snooping trust                                                   !- nao recebe DHCP offers
 no shutdown
 exit
 
-interface range FastEthernet0/11-20
-
+interface range FastEthernet0/15-24
 description Porta com acesso Vlan101
 switchport access vlan 101
 switchport mode access
@@ -99,10 +119,13 @@ switchport port-security
 switchport port-security maximum 3
 switchport port-security violation shutdown
 switchport port-security mac-address sticky
+mls qos trust cos
+switchport voice vlan 200
 ip dhcp snooping limit rate 10
 no ip dhcp snooping trust
 no shutdown
 exit
+
 
 interface range FastEthernet 0/23-24
 no switchport mode access
@@ -142,6 +165,8 @@ exit
 !no ip dhcp snooping trust
 !shut
 !exit
+
+ip dhcp snooping Vlan
 
 ip default-gateway 172.19.12.254
 
