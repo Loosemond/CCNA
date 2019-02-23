@@ -43,7 +43,6 @@ vtp mode off                                                                !- a
 no vtp domain CCNA
 no vtp password class
 
-conf t
 !---- VLANS
 vlan 10
 
@@ -92,7 +91,7 @@ no shutdown
 exit
 
 !--- liga ao server DHCP -> 0/1
-interface range FastEthernet0/15-26
+interface range FastEthernet0/15-20
 description Porta com acesso Vlan11
 switchport access vlan 11
 switchport mode access

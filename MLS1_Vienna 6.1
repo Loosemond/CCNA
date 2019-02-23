@@ -1,6 +1,5 @@
 en
 conf t
-ipv6 unicast-routing
 hostname MLS1_Vienna
 username cisco privilege 15 secret class
 banner login !Efetue um backup de segurança antes de efetuar alteracoes!
@@ -101,7 +100,6 @@ standby 10 ip 172.19.9.254                  !- o ip a ser usado que é o ultimo 
 Standby 10 priority 110                     !- como e mais alto que o default quer dizer que e o activo
 Standby 10 preempt
 ip ospf 1 area 3                          !- caso for abaixo quando voltar a estar up passa a ser o default (SEMPRE que estaja up vai ser o default)
-ipv6 address 1000:0:0:10::1/64
 Exit
 
 Interface vlan 11
@@ -111,7 +109,6 @@ standby 101 ip 172.19.11.254
 Standby 11 priority 110
 Standby 11 preempt
 ip ospf 1 area 3
-ipv6 address 1000:0:0:11::1/64
 Exit
 
 Interface vlan 255
@@ -125,7 +122,6 @@ ip ospf 1 area 0
 ip ospf message-digest-key 1 md5 netacad
 ip ospf hello-interval 20
 ip ospf dead-interval 80
-ipv6 address 1000:0:0:15::1/64
 Exit
 
 int vlan 100
@@ -136,7 +132,6 @@ Standby 100 priority 100
 Standby 100 preempt
 ip ospf 1 area 3
 ip helper-address 172.19.10.1
-ipv6 address 1000:0:0:13::1/64
 exit
 
 int vlan 101
@@ -148,7 +143,6 @@ ip ospf 1 area 3
 Standby 101 preempt
 ip ospf 1 area 3
 ip helper-address 172.19.10.1
-ipv6 address 1000:0:0:14::1/64
 exit
 
 int vlan 200
@@ -159,7 +153,6 @@ Standby 200 priority 100
 Standby 200 preempt
 ip ospf 1 area 3
 ip helper-address 172.19.10.1
-ipv6 address 1000:0:0:12::1/64
 exit
 
 interface fa0/1
