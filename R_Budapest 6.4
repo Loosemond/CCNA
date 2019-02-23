@@ -25,16 +25,8 @@ neighbor 209.165.200.98 remote-as 60000
 no synchronization
 exit
 
-!----OSPFv2
-router ospf 1
-passive-interface default
-no passive-interface  gigabitethernet0/0
-router-id 1.1.1.2
-network 172.19.64.0 0.0.15.255 area 2
-area 1 range 172.19.64.0 255.255.240.0
-area 0 authentication message-digest
-default-information originate
-exit
+no ip route 0.0.0.0 0.0.0.0 209.165.200.98
+
 
 !----OSPFv3
 ipv6 router ospf 3
@@ -46,14 +38,8 @@ exit
 interface gigabitethernet0/0
 description connect to SPN
 ip address 209.165.200.97 255.255.255.252
-ip ospf 1 area 0
-ip ospf message-digest-key 1 md5 netacad
-ip ospf hello-interval 20
-ip ospf dead-interval 80
+no ip ospf 1 area 0
 ipv6 address fe80::2 link-Local
-ipv6 ospf 3 area 0
-ipv6 ospf hello-interval 20
-ipv6 ospf dead-interval 40
 bandwidth 100000
 no shut
 exit
@@ -108,7 +94,43 @@ ipv6 address 1000:0:0:25::1/64
 ipv6 ospf 3 area 2
 exit
 
-!---VPN
+
+!---VPN pag 518
+!--- PSK -> Pre shared key
+!--acl
+
+ip access-list extended set3-acl
+permit gre host 209.165.200.97 host 193.136.60.106
+permit gre host 209.165.200.97 host 63.49.54.21
+deny ip any any
+
+crypto isakmp policy 10
+encryption 3des
+authentication pre-share
+group 5 !--hellman
+hash sha
+Exit
+
+crypto isakmp key ViBuda12345 address 193.136.60.106
+crypto isakmp key BudaLiu12345 address 63.49.54.21
+
+crypto ipsec transform-set tset1 esp-3des esp-sha-hmac
+crypto map map1 10 ipsec-isakmp
+set peer 193.136.60.106
+set transform-set tset1
+match address set3-acl
+
+crypto ipsec transform-set tset2 esp-3des esp-sha-hmac
+crypto map map1 10 ipsec-isakmp
+set peer 63.49.54.21
+set transform-set tset2
+match address set3-acl
+
+interface gigabitethernet0/0
+description connect to SPN
+crypto map map1
+exit
+
 interface Tunnel1
 description VPN to Vienna
 ip address 10.0.0.2 255.255.255.252
@@ -142,6 +164,19 @@ ipv6 ospf hello-interval 20
 ipv6 ospf dead-interval 40
 bandwidth 50000
 exit
+
+!----OSPFv2
+router ospf 1
+passive-interface default
+no passive-interface Tunnel1
+no passive-interface Tunnel2
+router-id 1.1.1.2
+network 172.19.64.0 0.0.15.255 area 2
+area 1 range 172.19.64.0 255.255.240.0
+area 0 authentication message-digest
+default-information originate
+exit
+
 
 !-------HOST TABLE
 ip host R_Vienna 193.136.60.106

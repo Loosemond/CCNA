@@ -16,22 +16,12 @@ ipv6 unicast-routing
 banner motd !Acesso Restrito a Utilizadores Autorizados!
 banner login !Efetue um backup de segurança antes de efetuar alterações!
 
-!----OSPFv2
-router ospf 1
-passive-interface default
-no passive-interface serial 0/0/0
-no passive-interface gigabitethernet0/0
-no passive-interface gigabitethernet0/1
-router-id 1.1.1.6
-area 0 authentication message-digest
-default-information originate metric 30 metric-type 1 !--aumenta com a distancia
-exit
 
 !---BGP
 router bgp 60000
 neighbor 193.136.60.106 remote-as 60001
-no neighbor 209.165.200.97 remote-as 60002
-no neighbor  63.49.54.21 remote-as 60003
+neighbor 209.165.200.97 remote-as 60002
+neighbor  63.49.54.21 remote-as 60003
 network 193.136.60.104 mask 255.255.255.252
 network 209.165.200.96 mask 255.255.255.252
 network 63.49.54.20 mask 255.255.255.252
@@ -39,14 +29,7 @@ no synchronization
 exit
 
 
-!----OSPFv3
-ipv6 router ospf 5
 router-id 1.1.1.6
-default-information originate
-exit
-interface serial 0/0/0
-bandwidth 8000
-exit
 
 !----Interfaceses
 

@@ -21,29 +21,7 @@ router bgp 60001
 neighbor 193.136.60.105 remote-as 60000
 no synchronization
 exit
-
-!----OSPFv2
-router ospf 1
-passive-interface default
-no passive-interface serial 0/0/0
-no passive-interface gigabitethernet0/2
-no passive-interface gigabitethernet0/0
-router-id 1.1.1.1
-area 0 authentication message-digest
-default-information originate metric 30 metric-type 1 !--aumenta com a distancia
-exit
-
-
-!----OSPFv3
-ipv6 router ospf 3
-router-id 1.1.1.1
-default-information originate
-exit
-interface serial 0/0/0
-bandwidth 8000
-exit
-
-
+no ip route 0.0.0.0 0.0.0.0 193.136.60.105
 
 
 !---Interfaceses
@@ -51,14 +29,9 @@ exit
 interface serial 0/0/0
 description connect to SPN
 ip address 193.136.60.106 255.255.255.252
-ip ospf 1 area 0
-ip ospf message-digest-key 1 md5 netacad
-ip ospf hello-interval 20
-ip ospf dead-interval 80
+no ip ospf 1 area 0
 ipv6 address fe80::1 link-local
-ipv6 ospf 3 area 0
-ipv6 ospf hello-interval 20
-ipv6 ospf dead-interval 80
+no ipv6 ospf 3 area 0
 bandwidth 100000
 ip nat inside
 no shut
@@ -96,7 +69,6 @@ ip ospf 1 area 0
 ip ospf hello-interval 20
 ip ospf dead-interval 80
 ip ospf message-digest-key 1 md5 netacad
-ip ospf cost 120
 ip nat inside
 duplex auto
 speed auto
@@ -104,6 +76,42 @@ no shutdown
 exit
 
 !---VPN pag 518
+!--- PSK -> Pre shared key
+!--acl
+
+ip access-list extended set3-acl
+permit gre host 193.136.60.106 host 209.165.200.97
+permit gre host 193.136.60.106 host 63.49.54.21
+deny ip any any
+
+crypto isakmp policy 10
+encryption 3des
+authentication pre-share
+group 5 !--hellman
+hash sha
+Exit
+
+crypto isakmp key ViBuda12345 address 209.165.200.97
+crypto isakmp key ViLiu12345 address 63.49.54.21
+
+crypto ipsec transform-set tset1 esp-3des esp-sha-hmac
+crypto map map1 10 ipsec-isakmp
+set peer 209.165.200.97
+set transform-set tset1
+match address set3-acl
+
+crypto ipsec transform-set tset2 esp-3des esp-sha-hmac
+crypto map map1 10 ipsec-isakmp
+set peer 63.49.54.21
+set transform-set tset2
+match address set3-acl
+
+
+interface serial 0/0/0
+description connect to SPN
+crypto map map1
+exit
+
 interface Tunnel1
 description VPN to Budapest
 ip address 10.0.0.1 255.255.255.252
@@ -135,6 +143,30 @@ ipv6 ospf hello-interval 20
 ipv6 ospf dead-interval 80
 bandwidth 100000
 exit
+
+!----OSPFv2
+router ospf 1
+passive-interface default
+no passive-interface gigabitethernet0/2
+no passive-interface gigabitethernet0/0
+no passive-interface Tunnel1
+no passive-interface Tunnel2
+router-id 1.1.1.1
+area 0 authentication message-digest
+default-information originate metric 30 metric-type 1 !--aumenta com a distancia
+exit
+
+!----OSPFv3
+ipv6 router ospf 3
+router-id 1.1.1.1
+passive-interface default
+no passive-interface Tunnel1
+no passive-interface Tunnel2
+default-information originate
+exit
+
+
+
 !-----NTP
 ntp master 1
 

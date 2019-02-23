@@ -24,23 +24,7 @@ neighbor 63.49.54.22 remote-as 60000
 no synchronization
 exit
 
-!----OSPFv2
-router ospf 1
-passive-interface default
-no passive-interface gi 0/1
-router-id 1.1.1.3
-network 172.19.128.0 0.0.15.255 area 3
-area 3 range 172.19.128.0 255.255.240.0
-area 0 authentication message-digest
-redistribute EIGRP 55 subnets
-default-information originate
-exit
-
-!----OSPFv3
-ipv6 router ospf 3
-router-id 1.1.1.3
-area 3 range 1000:0:0:30::0/60
-exit
+no ip route 0.0.0.0 0.0.0.0 63.49.54.22
 
 !----Eigrp
 key chain AS100
@@ -153,6 +137,44 @@ ipv6 ospf 3 area 3
 exit
 
 !---VPN
+!--- PSK -> Pre shared key
+!--acl
+
+ip access-list extended set3-acl
+permit gre host 63.49.54.21 host 209.165.200.97
+permit gre host 63.49.54.21 host 193.136.60.106
+deny ip any any
+
+
+crypto isakmp policy 10
+encryption 3des
+authentication pre-share
+group 5 !--hellman
+hash sha
+Exit
+
+
+!--set da pass
+crypto isakmp key ViLiu12345 address 193.136.60.106
+crypto isakmp key BudaLiu12345 address 209.165.200.97
+
+!-cria o set para cada tunel
+crypto ipsec transform-set tset1 esp-3des esp-sha-hmac
+crypto map map1 10 ipsec-isakmp
+set peer 193.136.60.106
+set transform-set tset1
+match address set3-acl
+
+crypto ipsec transform-set tset2 esp-3des esp-sha-hmac
+crypto map map1 10 ipsec-isakmp
+set peer 209.165.200.97
+set transform-set tset2
+match address set3-acl
+
+interface gigabitethernet0/1
+description connect to SPN
+crypto map map1
+exit
 
 interface Tunnel1
 description VPN to Budapeste
@@ -184,8 +206,32 @@ ipv6 ospf hello-interval 20
 ipv6 ospf dead-interval 40
 tunnel source 63.49.54.21
 tunnel destination 193.136.60.106
-bandwidth 50000
+bandwidth 100000
 exit
+
+
+!----OSPFv2
+router ospf 1
+passive-interface default
+no passive-interface Tunnel1
+no passive-interface Tunnel2
+router-id 1.1.1.3
+network 172.19.128.0 0.0.15.255 area 3
+area 3 range 172.19.128.0 255.255.240.0
+area 0 authentication message-digest
+redistribute EIGRP 55 subnets
+default-information originate
+exit
+
+!----OSPFv3
+ipv6 router ospf 3
+router-id 1.1.1.3
+passive-interface default
+no passive-interface Tunnel1
+no passive-interface Tunnel2
+area 3 range 1000:0:0:30::0/60
+exit
+
 
 !-------HOST TABLE
 ip host R_Vienna 193.136.60.106
