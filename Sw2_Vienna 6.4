@@ -43,8 +43,6 @@ no vtp domain CCNA
 no vtp password class
 
 
-!--vlans                                                                        !- foram apagadas pois estamos a usar vtp
-
 !---- VLANS
 vlan 10
 
@@ -126,13 +124,13 @@ no ip dhcp snooping trust
 no shutdown
 exit
 
-
 interface range FastEthernet 0/23-24
 no switchport mode access
 no switchport access vlan 1
 channel-group 1 mode active
 description Link to MLS1_Vienna
 Exit
+
 interface Port-channel 1
 no switchport mode access
 no switchport access vlan 1
@@ -141,7 +139,6 @@ switchport trunk native Vlan 254
 switchport trunk allowed vlan 10,11,255,100,101,200
 no ip dhcp snooping trust
 ip dhcp snooping limit rate 10
-
 exit
 
 interface range FastEthernet 0/21-22
@@ -150,6 +147,7 @@ no switchport access vlan 1
 channel-group 2 mode active
 description Link to MLS2_Vienna
 Exit
+
 interface Port-channel 2
 no switchport mode access
 no switchport access vlan 1
@@ -159,6 +157,7 @@ switchport trunk allowed vlan 10,11,255,100,101,200
 no ip dhcp snooping trust
 ip dhcp snooping limit rate 10
 exit
+
 !interface range Fastethernet0/21-24
 !description Porta com acesso Vlan299
 !switchport access vlan 299
@@ -166,10 +165,7 @@ exit
 !shut
 !exit
 
-ip dhcp snooping Vlan
-
 ip default-gateway 172.19.12.254
-
 
 interface Vlan255
 ip address 172.19.12.2 255.255.255.0
