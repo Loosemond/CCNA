@@ -1,0 +1,90 @@
+enable
+config t
+hostname ap1
+
+dot11  ssid Wireless
+VLAN  201
+authentication open
+authentication key-Management wpa
+mbssid Guest-mode
+wpa-psk ascii ciscoclass
+exit
+
+dot11 ssid WIRELESS-GUESTS
+vlan 202
+authentication open
+authentication key-management wpa
+mbssid guest-mode
+wpa-psk ascii 7 ciscoguestciscoguest
+Exit
+
+interface Dot11Radio0
+no shutdown
+encryption vlan 201 mode ciphers aes-ccm tkip
+encryption vlan 202 mode ciphers aes-ccm tkip
+ssid WIRELESS
+ssid WIRELESS-GUESTS
+mbssid
+Exit
+
+interface Dot11Radio0.201
+encapsulation dot1Q 201
+bridge-group 201
+Exit
+
+interface Dot11Radio0.202
+encapsulation dot1Q 202
+bridge-group 202
+Exit
+
+interface Dot11Radio1
+no shutdown
+encryption vlan 201 mode ciphers aes-ccm tkip
+encryption vlan 202 mode ciphers aes-ccm tkip
+ssid Wireless
+ssid WIRELESS-GUESTS
+mbssid
+Exit
+
+interface Dot11Radio1.201
+encapsulation dot1Q 201
+bridge-group 201
+exit
+
+interface Dot11Radio1.202
+encapsulation dot1Q 202
+bridge-group 202
+Exit
+
+interface FastEthernet0
+no shutdown
+Exit
+
+interface FastEthernet0.201
+encapsulation dot1Q 201
+bridge-group 201
+exit
+
+interface FastEthernet0.202
+encapsulation dot1Q 202
+bridge-group 202
+Exit
+
+interface FastEthernet0.254
+encapsulation dot1Q 254 native
+bridge-group 1
+Exit
+
+interface FastEthernet0.255
+ip address 172.19.12.254 255.255.255.0
+encapsulation dot1Q 255
+bridge-group 255
+Exit
+
+interface BVI1
+no ip address
+Exit
+
+interface BVI255
+ip address 172.19.12.254 255.255.255.0
+Exit
