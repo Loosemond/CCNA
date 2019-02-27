@@ -39,8 +39,6 @@ ip host SPN 63.49.54.22 19.136.60.107 209.165.200.98
 
 !---- VTP
 vtp mode off                                                                 !- activa o vtp v1 em modo servidor
-no vtp domain CCNA
-no vtp password class
 
 
 !---- VLANS
@@ -80,6 +78,7 @@ vlan 201
 name Wireless
 
 vlan 202
+
 name Wireless-Guest
 exit
 
