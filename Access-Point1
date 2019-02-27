@@ -1,6 +1,27 @@
 enable
 config t
 hostname ap1
+ip domain name AP1_Vienna.CCNA_lab.com
+crypto key generate rsa general-keys modulus 1024 expo
+line con 0
+login local
+exit
+line vty 0 4
+privilege level 15
+login local
+transport input ssh
+exit
+
+ip default-gateway 172.19.12.254
+
+router ospf 1
+passive-interface default
+no passive-interface fa0/1
+no passive-interface vlan 255
+router-id 1.1.1.6
+area 0 authentication message-digest
+exit
+
 
 dot11  ssid WIRELESS
 VLAN  201
@@ -49,7 +70,7 @@ bridge-group 1
 Exit
 
 interface FastEthernet0.255
-ip address 172.19.12.254 255.255.255.0
+ip address 172.19.12.3 255.255.255.0
 encapsulation dot1Q 255
 bridge-group 255
 Exit
