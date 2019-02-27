@@ -7,7 +7,7 @@ vlan 202
 authentication open
 authentication key-management wpa
 mbssid guest-mode
-wpa-psk ascii 7 ciscoguestciscoguest
+wpa-psk ascii ciscoguest
 Exit
 
 interface Dot11Radio0
