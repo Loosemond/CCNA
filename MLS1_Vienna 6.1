@@ -65,7 +65,7 @@ interface Port-channel 1
 switchport trunk encapsulation dot1q
 switchport trunk native Vlan 254
 switchport mode trunk
-switchport trunk allowed vlan 10,11,255,100,101,200
+switchport trunk allowed vlan 10,11,255,100,101,200,201,202
 
 
 !--SW1_Vienna
@@ -76,7 +76,7 @@ interface Port-channel 2
 switchport trunk encapsulation dot1q
 switchport trunk native Vlan 254
 switchport mode trunk
-switchport trunk allowed vlan 10,11,255,100,101,200
+switchport trunk allowed vlan 10,11,255,100,101,200,201,202
 ip dhcp snooping trust
 ip dhcp snooping limit rate 10
 
@@ -88,7 +88,7 @@ interface Port-channel 3
 switchport trunk encapsulation dot1q
 switchport trunk native Vlan 254
 switchport mode trunk
-switchport trunk allowed vlan 10,11,255,100,101,200
+switchport trunk allowed vlan 10,11,255,100,101,200,201,202
 ip dhcp snooping trust
 ip dhcp snooping limit rate 10
 
@@ -155,6 +155,27 @@ ip ospf 1 area 3
 ip helper-address 172.19.10.1
 exit
 
+int vlan 201
+description WIRELESS
+ip add 172.19.14.253 255.255.255.0
+standby 201 ip 172.19.14.254                !- este é /22 logo o ultimo ip e .3.254
+Standby 201 priority 100
+Standby 201 preempt
+ip ospf 1 area 3
+ip helper-address 172.19.10.1
+exit
+
+
+int vlan 202
+description WIRELESS-GUESTS
+ip add 172.19.15.253 255.255.255.0
+standby 202 ip 172.19.15.254                !- este é /22 logo o ultimo ip e .3.254
+Standby 202 priority 100
+Standby 202 preempt
+ip ospf 1 area 3
+ip helper-address 172.19.10.1
+exit
+
 interface fa0/1
 Description Link to Vienna
 No switchport
@@ -189,6 +210,8 @@ spanning-tree vlan 255 root primary
 spanning-tree vlan 100 root secondary
 spanning-tree vlan 101 root secondary
 spanning-tree vlan 200 root secondary
+spanning-tree vlan 201 root secondary
+spanning-tree vlan 202 root secondary
 
 !-------HOST TABLE
 ip host R_Vienna 193.136.60.106

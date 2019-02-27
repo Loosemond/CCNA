@@ -62,6 +62,20 @@ ip dhcp pool Administration
  lease 8
  exit
 
+ip dhcp pool WIRELESS
+network 172.19.14.0 255.255.255.0
+default-router 172.19.14.254
+dns-server 172.16.208.66 193.136.60.10
+lease 8
+exit
+
+ip dhcp pool WIRELESS-GUESTS
+ network 172.19.15.0 255.255.255.0
+ default-router 172.19.15.254
+ dns-server 172.16.208.66 193.136.60.10
+ lease 8
+ exit
+
 ! ----- HTTP
 interface gigabitEthernet 0/0
 ip address 172.19.8.1 255.255.254.0
