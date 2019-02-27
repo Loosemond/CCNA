@@ -2,7 +2,7 @@ enable
 config t
 hostname ap1
 
-dot11  ssid Wireless
+dot11  ssid WIRELESS
 VLAN  201
 authentication open
 authentication key-Management wpa
@@ -41,7 +41,7 @@ interface Dot11Radio1
 no shutdown
 encryption vlan 201 mode ciphers aes-ccm tkip
 encryption vlan 202 mode ciphers aes-ccm tkip
-ssid Wireless
+ssid WIRELESS
 ssid WIRELESS-GUESTS
 mbssid
 Exit
