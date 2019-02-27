@@ -14,14 +14,6 @@ exit
 
 ip default-gateway 172.19.12.254
 
-router ospf 1
-passive-interface default
-no passive-interface fa0/1
-no passive-interface vlan 255
-router-id 1.1.1.6
-area 0 authentication message-digest
-exit
-
 
 dot11  ssid WIRELESS
 VLAN  201
@@ -80,5 +72,5 @@ no ip address
 Exit
 
 interface BVI255
-ip address 172.19.12.254 255.255.255.0
+ip address 172.19.12.3 255.255.255.0
 Exit
