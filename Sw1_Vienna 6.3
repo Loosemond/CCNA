@@ -85,7 +85,7 @@ name Wireless-Guest
 
 exit
 !--- liga ao server HTTP -> 0/0
-interface range FastEthernet0/5-14
+interface range FastEthernet0/0-10
 description porta com acesso Vlan10
 switchport access vlan 10
 switchport mode access
@@ -100,7 +100,7 @@ no shutdown
 exit
 
 !--- liga ao server DHCP -> 0/1
-interface range FastEthernet0/15-20
+interface range FastEthernet0/10-20
 description Porta com acesso Vlan11
 switchport access vlan 11
 switchport mode access
