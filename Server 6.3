@@ -30,15 +30,17 @@ ip address 172.19.10.1 255.255.254.0
 no shutdown
 exit
 
-ip dhcp excluded-address 172.19.3.252
-ip dhcp excluded-address 172.19.3.253
-ip dhcp excluded-address 172.19.3.254
-ip dhcp excluded-address 172.19.5.252
-ip dhcp excluded-address 172.19.5.253
-ip dhcp excluded-address 172.19.5.254
-ip dhcp excluded-address 172.19.7.252
-ip dhcp excluded-address 172.19.7.253
-ip dhcp excluded-address 172.19.7.254
+ip dhcp excluded-address 172.19.0.1 172.19.0.5
+ip dhcp excluded-address 172.19.3.250 172.19.3.254
+ip dhcp excluded-address 172.19.4.1 172.19.4.5
+ip dhcp excluded-address 172.19.5.250 172.19.5.254
+ip dhcp excluded-address 172.19.6.1 172.19.6.5
+ip dhcp excluded-address 172.19.7.250 172.19.7.254
+ip dhcp excluded-address 172.19.14.
+ip dhcp excluded-address
+ip dhcp excluded-address
+ip dhcp excluded-address
+
 
 ip dhcp pool Voice
  network 172.19.0.0 255.255.252.0
