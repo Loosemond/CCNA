@@ -39,6 +39,9 @@ network 56.16.20.212 0.0.0.3
 redistribute static
 exit
 
+!---SNMP
+snmp-server community cisco ro
+
 !---Interfaceses
 interface multilink 1
 description connect to Liubliana

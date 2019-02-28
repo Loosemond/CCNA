@@ -14,6 +14,9 @@ exit
 
 ip default-gateway 172.19.12.254
 
+!---SNMP
+snmp-server community cisco ro
+
 dot11 ssid WIRELESS-GUESTS
 vlan 202
 authentication open
