@@ -16,10 +16,10 @@ exit
 
 
 !--Services
-ip dhcp snooping
-ip dhcp snooping Vlan 200
-ip dhcp snooping Vlan 100
-ip dhcp snooping Vlan 101
+no ip dhcp snooping
+!ip dhcp snooping Vlan 200
+!ip dhcp snooping Vlan 100
+!ip dhcp snooping Vlan 101
 ip default-gateway 172.19.12.254                                                !- ip do mls2 vlan Administration
 service password-encryption
 
