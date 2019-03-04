@@ -25,7 +25,14 @@ no ip dhcp snooping
 ip default-gateway 172.19.12.254                                                !- ip do mls2 vlan Administration
 service password-encryption
 
+!---Syslog
+conf t
+logging on
+service timestamp log uptime
+service sequence-numbers
 
+!---netflow
+ip route-cache flow
 
 !-------HOST TABLE
 ip host R_Vienna 193.136.60.106
@@ -170,6 +177,7 @@ ip default-gateway 172.19.12.254
 
 interface Vlan255
 ip address 172.19.12.2 255.255.255.0
+Exit
 
 ! ----- Spanning Tree
 spanning-tree mode rapid-pvst

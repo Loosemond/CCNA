@@ -29,6 +29,12 @@ ip dhcp snooping
 ip default-gateway 172.19.12.3
 service password-encryption
 
+!---Syslog
+conf t
+logging on
+service timestamp log uptime
+service sequence-numbers
+
 !---- VLANS
 vlan 10
 

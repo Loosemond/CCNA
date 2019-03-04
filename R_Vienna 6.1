@@ -26,6 +26,12 @@ no ip route 0.0.0.0 0.0.0.0 193.136.60.105
 !---SNMP
 snmp-server community cisco ro
 
+!---Syslog
+conf t
+logging on
+service timestamp log uptime
+service sequence-numbers
+
 !---Interfaceses
 
 interface serial 0/0/0

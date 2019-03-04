@@ -28,6 +28,12 @@ network 63.49.54.20 mask 255.255.255.252
 no synchronization
 exit
 
+!---Syslog
+conf t
+logging on
+service timestamp log uptime
+service sequence-numbers
+
 !---SNMP
 snmp-server community cisco ro
 

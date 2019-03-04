@@ -42,6 +42,12 @@ exit
 !---SNMP
 snmp-server community cisco ro
 
+!---Syslog
+conf t
+logging on
+service timestamp log uptime
+service sequence-numbers
+
 !---Interfaceses
 interface multilink 1
 description connect to Liubliana

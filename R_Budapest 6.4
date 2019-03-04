@@ -25,6 +25,12 @@ neighbor 209.165.200.98 remote-as 60000
 no synchronization
 exit
 
+!---Syslog
+conf t
+logging on
+service timestamp log uptime
+service sequence-numbers
+
 no ip route 0.0.0.0 0.0.0.0 209.165.200.98
 
 

@@ -17,6 +17,12 @@ exit
 !---SNMP
 snmp-server community cisco ro
 
+!---Syslog
+conf t
+logging on
+service timestamp log uptime
+service sequence-numbers
+
 ! ----- Services
 ip dhcp snooping
 ip dhcp snooping Vlan 200

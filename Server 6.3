@@ -30,6 +30,12 @@ ip address 172.19.10.1 255.255.254.0
 no shutdown
 exit
 
+!---Syslog
+conf t
+logging on
+service timestamp log uptime
+service sequence-numbers
+
 !---DHCP excluded
 ip dhcp excluded-address 172.19.0.1 172.19.0.5
 ip dhcp excluded-address 172.19.3.250 172.19.3.254
