@@ -108,7 +108,8 @@ clock summer-time WEST recurring last Sun Mar 1:00 last Sun Oct 2:00
 telephony-Service
 max-ephone 64
 max-dn 128
-system message Hello Welcome to McDonalds How can I help you
+ip source-address 172.19.8.1 port 2000
+system message Blizzard Headquarters
 cnf-file location flash:
 load 7912 CP7912080004SCCP080108A.sbin
 create cnf-files
@@ -118,7 +119,7 @@ number 1000
 exit
 
 ephone 1
-mac-address 0015.638A.CBDD
+mac-address 0016.9D7A.206B
 type 7912
 button 1:1
 exit
@@ -128,10 +129,33 @@ number 2000
 exit
 
 ephone 2
-mac-address 0015.63AC.AACD
+mac-address 0016.9D7A.206B
 type 7912
 button 1:2
 exit
+
+
+ephone-dn 3
+number 3000
+exit
+
+ephone 3
+mac-address 0015.638A.CBDD
+type 7912
+button 1:3
+exit
+
+
+ephone-dn 4
+number 4000
+exit
+
+ephone 4
+mac-address 0015.63FF.5EB9
+type 7912
+button 1:4
+exit
+
 
 !---ntp
 ntp server 193.136.60.106
