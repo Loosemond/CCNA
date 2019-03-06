@@ -104,6 +104,39 @@ ipv6 ospf 3 area 2
 exit
 
 
+interface Loopback6
+description LoopBack Budapeste Research
+ip address 172.19.44.1 255.255.255.0
+ip ospf 1 area 2
+ipv6 address 1000:0:0:26::1/64
+ipv6 ospf 3 area 2
+exit
+
+interface Loopback7
+description LoopBack Budapeste Research Server
+ip address 172.19.45.1 255.255.255.128
+ip ospf 1 area 2
+ipv6 address 1000:0:0:27::1/64
+ipv6 ospf 3 area 2
+exit
+
+interface Loopback8
+description LoopBack Budapeste Test Envoirement
+ip address 172.19.45.129 255.255.255.128
+ip ospf 1 area 2
+ipv6 address 1000:0:0:28::1/64
+ipv6 ospf 3 area 2
+exit
+
+interface Loopback9
+description LoopBack Budapeste Survailance Cams
+ip address 172.19.46.1 255.255.255.0
+ip ospf 1 area 2
+ipv6 address 1000:0:0:29::1/64
+ipv6 ospf 3 area 2
+exit
+
+
 !---VPN pag 518
 !--- PSK -> Pre shared key
 !--acl

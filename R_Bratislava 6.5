@@ -123,6 +123,19 @@ ip address 172.19.194.1 255.255.255.0
 ipv6 address 1000:0:0:42::1/64
 exit
 
+interface Loopback3
+description LoopBack Bratislava Branch to Research
+ip address 172.19.195.1 255.255.255.128
+ipv6 address 1000:0:0:43::1/64
+exit
+
+interface Loopback4
+description LoopBack Bratislava Branch to Development
+ip address 172.19.195.129 255.255.255.128
+ipv6 address 1000:0:0:44::1/64
+exit
+
+
 !--Clock
 ntp server 193.136.60.106
 
